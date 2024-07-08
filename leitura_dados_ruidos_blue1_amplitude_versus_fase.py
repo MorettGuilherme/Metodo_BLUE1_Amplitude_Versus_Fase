@@ -1,6 +1,6 @@
-# Projeto ATLAS - Reconstrução de sinal - Best Linear Unbiased Estimator (BLUE 1) - Estimação do termo amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 27 de maio de 2024.
+# Data: 08 de julho de 2024.
 
 # Objetivo do código: realização da leitura dos dados de ruídos no formato free running.
 
@@ -32,7 +32,6 @@ Saída: matriz de covariância dos dados de ruídos.
 5) Função para a construção da matriz de covariância como identidade.
 Entrada: matriz com os dados de ruídos janelados.
 Saída: matriz de covariância igual a identidade.
-
 """
 
 # Importação das bibliotecas.
@@ -85,8 +84,8 @@ def leitura_dados_ruidos(n_ocupacao):
 # Definição da função amostras_ruidos_janelamento para a construção da matriz de ruídos de acordo com o janelamento.
 def amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento):
 
-    # Criação da lista vazia Matriz_dados_ruidos.
-    Matriz_dados_ruidos = []
+    # Criação da lista vazia Matriz_Dados_Ruidos.
+    Matriz_Dados_Ruidos = []
 
     # Criação do índice j que inicialmente é atribuído como nulo.
     j = 0
@@ -95,63 +94,63 @@ def amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento):
     while j <= (len(vetor_dados_ruidos)-n_janelamento):
 
         # O dado especificado (uma lista que forma as linhas da matriz) é acrescentado a lista Matriz_dados_ruidos.
-        Matriz_dados_ruidos.append(vetor_dados_ruidos[j : j+n_janelamento])
+        Matriz_Dados_Ruidos.append(vetor_dados_ruidos[j : j+n_janelamento])
         # Acréscimo unitário no índice j.
         j += 1
 
-    # Conversão da lista Matriz_dados_ruidos para o tipo numpy array.   
-    Matriz_dados_ruidos = np.array(Matriz_dados_ruidos)
+    # Conversão da lista Matriz_Dados_Ruidos para o tipo numpy array.   
+    Matriz_Dados_Ruidos = np.array(Matriz_Dados_Ruidos)
 
-    # A função retorna a matriz Matriz_dados_pulsos e o vetor vetor_parametro_referencia.
-    return Matriz_dados_ruidos
+    # A função retorna a matriz Matriz_Dados_ruidos.
+    return Matriz_Dados_Ruidos
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 ### ----------------------------- 3) FUNÇÃO PARA SEPARAÇÃO EM DADOS DE RUÍDOS DE TREINO E DE TESTE --------------------------------------------- ###
 
 # Definição da função para a separação dos dados em treino e teste.
-def dados_ruidos_treino_teste_histograma(Matriz_dados_ruidos):
+def dados_ruidos_treino_teste_histograma(Matriz_Dados_Ruidos):
     
     # Definição do índice da metade da matriz. 
     # Obs.: nesse caso está configurado para metade dos dados serem de treino e teste.
-    indice_metade = len(Matriz_dados_ruidos) // 2
+    indice_metade = len(Matriz_Dados_Ruidos) // 2
         
-    # A primeira metade corresponde a matriz Matriz_dados_ruidos_treino.
-    Matriz_dados_ruidos_treino = Matriz_dados_ruidos[ : indice_metade]
+    # A primeira metade corresponde a matriz Matriz_Dados_Ruidos_Treino.
+    Matriz_Dados_Ruidos_Treino = Matriz_Dados_Ruidos[ : indice_metade]
         
-    # A segunda metade corresponde a matriz Matriz_dados_ruidos_teste.
-    Matriz_dados_ruidos_teste = Matriz_dados_ruidos[indice_metade : ]
+    # A segunda metade corresponde a matriz Matriz_Dados_Ruidos_Teste.
+    Matriz_Dados_Ruidos_Teste = Matriz_Dados_Ruidos[indice_metade : ]
           
     # A função retorna a matriz dos dados de ruídos dividida em treino e teste pela metade do dataset inicial.    
-    return Matriz_dados_ruidos_treino, Matriz_dados_ruidos_teste
+    return Matriz_Dados_Ruidos_Treino, Matriz_Dados_Ruidos_Teste
         
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 ### ------------------------------------- 4) FUNÇÃO PARA A CONSTRUÇÃO DA MATRIZ DE COVARIÂNCIA ------------------------------------------------- ###
 
 # Definição da função para o cálculo da matriz de covariância a partir dos dados de ruídos.
-def matriz_covariancia(Matriz_dados_ruidos):
+def matriz_covariancia(Matriz_Dados_Ruidos):
     
     # Cálculo da matriz de covariância considerando que as variáveis estão dispostas nas colunas da matriz de dados de ruídos.
-    Matriz_covariancia_ruidos = np.cov(Matriz_dados_ruidos, rowvar = False)
+    Matriz_Covariancia_Ruidos = np.cov(Matriz_Dados_Ruidos, rowvar = False)
     
     # A função retorna a matriz de covariância de ruídos.
-    return Matriz_covariancia_ruidos
+    return Matriz_Covariancia_Ruidos
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 ### ----------------------------------- 5) FUNÇÃO PARA A CONSTRUÇÃO DA MATRIZ DE COVARIÂNCIA COMO IDENTIDADE ----------------------------------- ###
 
 # Definição da função para a matriz de covariância ser igual a identidade.
-def matriz_covariancia_identidade(Matriz_dados_ruidos):
+def matriz_covariancia_identidade(Matriz_Dados_Ruidos):
     
     # Número de linhas da matriz de dados de ruídos.
-    n_linhas_Matriz_dados_ruidos = len(Matriz_dados_ruidos)
+    n_linhas_matriz_dados_ruidos = len(Matriz_Dados_Ruidos)
     
     # A matriz de covariância é igual a identidade.
-    matriz_covariancia_ID = np.eye(n_linhas_Matriz_dados_ruidos)
+    Matriz_Covariancia_ID = np.eye(n_linhas_matriz_dados_ruidos)
     
     # A função retorna a matriz de covariância igual a identidade.
-    return matriz_covariancia_ID
+    return Matriz_Covariancia_ID
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###

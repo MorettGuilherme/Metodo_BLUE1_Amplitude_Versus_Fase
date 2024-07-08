@@ -1,6 +1,6 @@
-# Projeto ATLAS - Reconstrução de sinal - Best Linear Unbiased Estimator (BLUE 1) - Estimação do termo amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 01 de junho de 2024.
+# Data: 08 de julho de 2024.
 
 # Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação do termo da amplitude versus a fase.
 
@@ -92,7 +92,7 @@ def grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatist
     # Definição da variável indice_coluna_var que armazena o valor do índice da coluna das variâncias.
     indice_coluna_var = 2
     
-    # Definição da variável indice_coluna_DP que armazena o valor do índice da coluna dos desvios padrões.
+    # Definição da variável indice_coluna_DP que armazena o valor do índice da coluna dos desvios padrão.
     indice_coluna_DP = 3
     
     # Definição do eixo das abscissas.
@@ -146,7 +146,7 @@ def grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatist
 ### ---------------------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
 
 # Definição da função principal (main) para esse código.
-def principal_grafico_dado_estatistico_janelamento_blue1():
+def principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase():
     
     # Impressão de mensagem no terminal.
     print("Opções de análise:\nMédia: 1\nVariância: 2\nDesvio padrão: 3\n")
@@ -154,7 +154,7 @@ def principal_grafico_dado_estatistico_janelamento_blue1():
     # A variável dado_estatistico armazena o número do tipo inteiro digitado pelo usuário via terminal.
     dado_estatistico = int(input("Digite o número da opção desejada: "))
 
-    # A variável valores_dados é uma lista com os valores aceitáveis para opcao.
+    # A variável valores_dados é uma lista com os valores aceitáveis para dado_estatistico.
     valores_dados = list(range(1,4,1))
 
     # Caso o valor digitado armazenado na variável dado_estatistico não estiver presente na lista valores_dados.
@@ -190,7 +190,7 @@ def principal_grafico_dado_estatistico_janelamento_blue1():
     grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento)
     
 # Chamada da função principal do código.
-principal_grafico_dado_estatistico_janelamento_blue1()
+principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase()
 
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")

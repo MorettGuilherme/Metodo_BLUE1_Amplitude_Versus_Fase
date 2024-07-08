@@ -1,6 +1,6 @@
-# Projeto ATLAS - Reconstrução de sinal - Best Linear Unbiased Estimator (BLUE 1) - Estimação do termo amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 03 de junho 2024.
+# Data: 08 de julho de 2024.
 
 # Objetivo do código: geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação do termo da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1).
 
@@ -8,9 +8,7 @@
 Organização do Código:
 
 Importação de arquivos.
-Leitura dos dados de ocupação: leitura_dados_ocupacao_blue1_amplitude_versus_fase.py
-Leitura dos dados de ruídos: leitura_dados_ruidos_blue1_amplitude_versus_fase.py
-Método: metodo_blue1_amplitude_versus_fase.py
+Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
@@ -37,9 +35,7 @@ import os
 from termcolor import colored
 
 # Importação dos arquivos.
-from leitura_dados_ocupacao_blue1_amplitude_versus_fase import *
-from leitura_dados_ruidos_blue1_amplitude_versus_fase import *
-from metodo_blue1_amplitude_versus_fase import * 
+from metodo_BLUE1_amplitude_versus_fase import * 
 
 # Impressão de uma linha que representa o início do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -126,7 +122,7 @@ def arquivo_saida_dados_estatisticos_erro_amplitude_versus_fase(parametro, n_ocu
 ### ---------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------------------- ###
 
 # Definição da função principal (main) para esse código.
-def principal_arquivo_saida_dados_estatisticos_blue1():
+def principal_arquivo_saida_dados_estatisticos_BLUE1_amplitude_versus_fase():
     
     # A variável ocupacao_inicial armazena o valor inicial da ocupação que é 0.
     ocupacao_inicial = 0
@@ -175,7 +171,7 @@ def principal_arquivo_saida_dados_estatisticos_blue1():
             
             Matriz_covariancia = matriz_covariancia(Matriz_dados_ruidos)
     
-            lista_erro_amplitude_versus_fase = metodo_BLUE1(Matriz_dados_pulsos_teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_covariancia, n_janelamento)
+            lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_dados_pulsos_teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_covariancia, n_janelamento)
             
             media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase = dados_estatisticos_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase)
     
@@ -184,7 +180,7 @@ def principal_arquivo_saida_dados_estatisticos_blue1():
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 # Chamada da função principal do código.
-principal_arquivo_saida_dados_estatisticos_blue1()
+principal_arquivo_saida_dados_estatisticos_BLUE1_amplitude_versus_fase()
 
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")

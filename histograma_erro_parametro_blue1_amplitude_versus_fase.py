@@ -1,6 +1,6 @@
-# Projeto Atlas - Reconstrução de sinal - Best Linear Unbiased Estimator (BLUE 1) - Estimação do termo amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 01 de junho de 2024.
+# Data: 08 de julho de 2024.
 
 # Objetivo do código: análise do erro absoluto do parâmetro da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1).
 
@@ -8,9 +8,7 @@
 Organização do Código:
 
 Importação de arquivos.
-Leitura dos dados de ocupação: leitura_dados_ocupacao_blue1_amplitude_versus_fase.py
-Leitura dos dados de ruídos: leitura_dados_ruidos_blue1_amplitude_versus_fase.py
-Método: metodo_blue1_amplitude_versus_fase.py
+Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
@@ -18,11 +16,11 @@ Funções presentes:
 Entrada: lista com os erros de estimação da amplitude versus a fase.
 Saída: a média, a variância e o desvio padrão do erro de estimação da amplitude versus a fase.
 
-2) Função para o plote do histograma do erro de estimação da amplitude versus a fase.
-Entrada: lista com os erros de estimação da amplitude versus a fase e seus dados estatatísticos.
+2) Instrução para o plote do histograma do erro de estimação da amplitude versus a fase.
+Entrada: lista com os erros de estimação da amplitude versus a fase e seus dados estatísticos.
 Saída: nada.
 
-3) Função principal.
+3) Instrução principal.
 Entrada: nada.
 Saída: nada.
 """
@@ -35,9 +33,7 @@ import os
 from termcolor import colored
 
 # Importação dos arquivos.
-from leitura_dados_ocupacao_blue1_amplitude_versus_fase import *
-from leitura_dados_ruidos_blue1_amplitude_versus_fase import *
-from metodo_blue1_amplitude_versus_fase import *
+from metodo_BLUE1_amplitude_versus_fase import *
 
 # Impressão de uma linha que representa o início do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -53,7 +49,7 @@ print(titulo_programa)
 ### -------------------- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE ----------------------- ###
 
 # Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus a fase.
-def dados_estatisticos_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase):
+def dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase):
     
     # A lista do erro de estimação da amplitude versus a fase é convertida para o tipo numpy array.
     vetor_erro_amplitude_versus_fase = np.array(lista_erro_amplitude_versus_fase)
@@ -72,10 +68,10 @@ def dados_estatisticos_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fa
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ----------------------- 2) FUNÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE -------------------------- ###
+### ----------------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE -------------------------- ###
 
-# Definição de função para o plot do histograma do erro de estimação da amplitude versus a fase.
-def histograma_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase):
+# Definição de instrução para o plot do histograma do erro de estimação da amplitude versus a fase.
+def histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase):
     
     # A lista do erro de estimação da amplitude versus fase é convertida para o tipo numpy array.
     vetor_erro_amplitude_versus_fase = np.array(lista_erro_amplitude_versus_fase)
@@ -94,6 +90,8 @@ def histograma_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase, medi
 
     # A variável texto recebe uma string com as informações de interesse.
     texto = f"Média: {round(media_erro_amplitude_versus_fase, 6)} \n Variância: {round(var_erro_amplitude_versus_fase, 6)} \n Desvio padrão: {round(desvio_padrao_erro_amplitude_versus_fase, 6)}"
+
+    plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
 
     # Definição do histograma a partir do vetor vetor_erro_parametro.
     plt.hist(vetor_erro_amplitude_versus_fase, bins = 100, range = [-25000, 25000], edgecolor = 'black', linewidth = 1.2)
@@ -115,16 +113,16 @@ def histograma_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase, medi
 
 ### -------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ------------------------------------------------------------- ###
 
-# Definição da função principal (main) do código.
-def principal_histograma_erro_parametro():
+# Definição da instrução principal (main) do código.
+def principal_histograma_BLUE1_erro_amplitude_versus_fase():
     
     # A variável parametro recebe a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
     
-    # A variável numero_ocupacao armazena o valor digitado da ocupação desejada no terminal pelo usuário.
+    # A variável n_ocupacao armazena o valor digitado da ocupação desejada no terminal pelo usuário.
     n_ocupacao = float(input("Digite o valor da ocupação desejada: "))
 
-    # A variável valores_ocupacao é uma lista com os valores aceitáveis de ocupação de 0 até 100.
+    # A variável valores_ocupacao é uma lista com os valores aceitáveis de ocupação de 0 até 100 com incremento de 10.
     valores_ocupacao = list(range(0,101,10))
 
     # Caso o valor digitado armazenado na variável numero_ocupacao não estiver presente na lista valores_ocupacao.
@@ -135,14 +133,14 @@ def principal_histograma_erro_parametro():
         # A execução do programa é interrompida.
         exit(1) 
 
-    # O tipo da variável numero_ocupacao é convertida para inteiro.
+    # O tipo da variável n_ocupacao é convertida para inteiro.
     # Obs.: essa conversão possibilita que a leitura do arquivo possa ser feita corretamente.
     n_ocupacao = int(n_ocupacao)
     
     # A variável n_janelamento armazena a quantidade de janelamento especificada no terminal pelo usuário.
     n_janelamento = int(input("Digite a quantidade de janelamento: "))
 
-    # A variável valores_janelamento é uma lista com os valores aceitáveis do janelamento de 7 até 19 com incremento de dois.
+    # A variável valores_janelamento é uma lista com os valores aceitáveis do janelamento de 7 até 19 com incremento de 2.
     valores_janelamento = list(range(7,20,2))
 
     # Caso o valor digitado armazenado na variável n_janelamento não estiver presente na lista valores_janelamento.
@@ -158,32 +156,32 @@ def principal_histograma_erro_parametro():
     
     Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao)
     
-    Matriz_Dados_OC_sem_pedestal = retirada_pedestal(Matriz_Dados_OC)
+    Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
     
-    vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_sem_pedestal)
+    vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
-    Matriz_dados_pulsos, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+    Matriz_Dados_Pulsos, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
         
-    Matriz_dados_pulsos, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+    Matriz_Dados_Pulsos, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
               
-    Matriz_dados_pulsos_treino, Matriz_dados_pulsos_teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_dados_pulsos, vetor_amplitude_referencia)
+    Matriz_Dados_Pulsos_Treino, Matriz_Dados_Pulsos_Teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_amplitude_referencia)
     
-    Matriz_dados_pulsos_treino, Matriz_dados_pulsos_teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_dados_pulsos, vetor_fase_referencia)
+    Matriz_Dados_Pulsos_Treino, Matriz_Dados_Pulsos_Teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_fase_referencia)
     
     vetor_dados_ruidos = leitura_dados_ruidos(n_ocupacao)
     
-    Matriz_dados_ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento)
+    Matriz_Dados_Ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento)
     
-    Matriz_covariancia = matriz_covariancia(Matriz_dados_ruidos)
+    Matriz_Covariancia = matriz_covariancia(Matriz_Dados_Ruidos)
        
-    lista_erro_amplitude_versus_fase = metodo_BLUE1(Matriz_dados_pulsos_teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_covariancia, n_janelamento)
+    lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_Dados_Pulsos_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_Covariancia, n_janelamento)
     
-    media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase = dados_estatisticos_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase)
+    media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase = dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase)
     
-    histograma_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase)
+    histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase)
     
 # Chamada da função principal (main) do código.
-principal_histograma_erro_parametro()
+principal_histograma_BLUE1_erro_amplitude_versus_fase()
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 # Impressão de uma linha que representa o fim do programa.

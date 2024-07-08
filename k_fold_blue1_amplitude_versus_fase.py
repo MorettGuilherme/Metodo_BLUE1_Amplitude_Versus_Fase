@@ -1,6 +1,6 @@
-# Projeto ATLAS - Reconstrução de sinal - Best Linear Unbiased Estimator (BLUE 1) - Estimação do termo amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 01 de junho de 2024.
+# Data: 08 de julho de 2024.
 
 # Objetivo do código: implementação da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação do termo da amplitude versus a fase.
 
@@ -8,9 +8,7 @@
 Organização do código:
 
 Importação de arquivos.
-Leitura dos dados de ocupação: leitura_dados_ocupacao_blue1_amplitude_versus_fase.py
-Leitura dos dados de ruídos: leitura_dados_ruidos_blue1_amplitude_versus_fase.py
-Método: metodo_blue1_amplitude_versus_fase.py
+Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
@@ -19,13 +17,12 @@ Entrada: número de ocupação, número do janelamento, média do dado estatíst
 Saída: nada.
 
 2) Instrução da validação cruzada K-Fold.
-Entrada: matriz com os pulsos de sinais e o vetor da amplitude versus a fase.
+Entrada: matriz com os pulsos de sinal e o vetor da amplitude versus a fase.
 Saída: nada.
 
 3) Instrução principal do código.
 Entrada: nada.
 Saída: nada.
-
 """
 
 # Importação de bibliotecas.
@@ -36,9 +33,7 @@ import time
 from termcolor import colored
 
 # Importação dos arquivos.
-from leitura_dados_ocupacao_blue1_amplitude_versus_fase import *
-from leitura_dados_ruidos_blue1_amplitude_versus_fase import *
-from metodo_blue1_amplitude_versus_fase import *
+from metodo_BLUE1_amplitude_versus_fase import *
 
 # Impressão de uma linha que representa o início do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
@@ -103,7 +98,7 @@ def arquivo_saida_dados_estatisticos_k_fold_erro(parametro, n_ocupacao, n_janela
 ### ----------------------------------------------- 2) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD ----------------------------------------------- ###
 
 # Definição da instrução da técnica de validação cruzada K-Fold.
-def K_fold(n_ocupacao, n_janelamento, Matriz_pulsos_sinais, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_Covariancia):
+def K_fold(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_Covariancia):
     
     # Criação da variável parâmetro que armazena a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
@@ -121,13 +116,13 @@ def K_fold(n_ocupacao, n_janelamento, Matriz_pulsos_sinais, vetor_amplitude_refe
     quantidade_blocos = 100
 
     # Definição da quantidade de elementos de cada bloco.
-    quantidade_elementos_bloco = len(Matriz_pulsos_sinais) // quantidade_blocos
+    quantidade_elementos_bloco = len(Matriz_Pulsos_Sinais) // quantidade_blocos
     
     # Para i de início em zero até a quantidade de elementos de amostras com incremento igual a quantidade_elementos_bloco.
-    for i in range(0, len(Matriz_pulsos_sinais), quantidade_elementos_bloco):
+    for i in range(0, len(Matriz_Pulsos_Sinais), quantidade_elementos_bloco):
     
         # Definição do bloco de pulsos de sinais.
-        bloco_pulsos_sinais = Matriz_pulsos_sinais[i:i+quantidade_elementos_bloco]
+        bloco_pulsos_sinais = Matriz_Pulsos_Sinais[i:i+quantidade_elementos_bloco]
         # O bloco dos pulsos de sinais é acrescentado a lista dos blocos dos pulsos de sinais.
         blocos_pulsos_sinais.append(bloco_pulsos_sinais)
     
@@ -181,7 +176,7 @@ def K_fold(n_ocupacao, n_janelamento, Matriz_pulsos_sinais, vetor_amplitude_refe
         bloco_treino_fase_referencia = [elemento for sublista in bloco_treino_fase_referencia for elemento in sublista]
         
         # A variável bloco_lista_erro_amplitude_versus_fase recebe o valor de retorno da função metodo_BLUE1.
-        bloco_lista_erro_amplitude_versus_fase = metodo_BLUE1(bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia, Matriz_Covariancia, n_janelamento)
+        bloco_lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia, Matriz_Covariancia, n_janelamento)
 
         # Cálculo dos dados estatísticos de cada bloco.
         bloco_media_erro = np.mean(bloco_lista_erro_amplitude_versus_fase)
@@ -222,7 +217,7 @@ def K_fold(n_ocupacao, n_janelamento, Matriz_pulsos_sinais, vetor_amplitude_refe
 ### ----------------------------------------- 3) INSTRUÇÃO PARA APLICAR O K-FOLD EM TODAS AS OCUPAÇÕES ----------------------------------------- ###
   
 # Definição da função principal (main) do código.
-def principal_K_fold():
+def principal_K_fold_BLUE1_amplitude_versus_fase():
     
     # A variável ocupacao_inicial armazena o valor inicial da ocupação que é 0.
     ocupacao_inicial = 0
@@ -252,24 +247,24 @@ def principal_K_fold():
     
             Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao)
             
-            Matriz_Dados_OC_sem_pedestal = retirada_pedestal(Matriz_Dados_OC)
+            Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
             
-            vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_sem_pedestal)
+            vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
-            Matriz_dados_pulsos_amplitude, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+            Matriz_Dados_Pulsos, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
             
-            Matriz_dados_pulsos_fase, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+            Matriz_Dados_Pulsos, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
 
             vetor_dados_ruidos = leitura_dados_ruidos(n_ocupacao)
     
-            Matriz_dados_ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento)
+            Matriz_Dados_Ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento)
     
-            Matriz_covariancia = matriz_covariancia(Matriz_dados_ruidos)
+            Matriz_Covariancia = matriz_covariancia(Matriz_Dados_Ruidos)
     
-            K_fold(n_ocupacao, n_janelamento, Matriz_dados_pulsos_amplitude, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_covariancia)
+            K_fold(n_ocupacao, n_janelamento, Matriz_Dados_Pulsos, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_Covariancia)
      
 # Chamada da função K_fold_OC.
-principal_K_fold()       
+principal_K_fold_BLUE1_amplitude_versus_fase()       
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 # Impressão de uma linha que representa o fim do programa.
