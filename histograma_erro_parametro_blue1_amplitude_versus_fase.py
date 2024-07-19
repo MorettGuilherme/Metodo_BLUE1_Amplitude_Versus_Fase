@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de julho de 2024.
+# Data: 16 de julho de 2024.
 
 # Objetivo do código: análise do erro absoluto do parâmetro da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1).
 
@@ -91,10 +91,11 @@ def histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude
     # A variável texto recebe uma string com as informações de interesse.
     texto = f"Média: {round(media_erro_amplitude_versus_fase, 6)} \n Variância: {round(var_erro_amplitude_versus_fase, 6)} \n Desvio padrão: {round(desvio_padrao_erro_amplitude_versus_fase, 6)}"
 
-    plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
+    # Comando para exibir o título do gráfico.
+    #plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
 
     # Definição do histograma a partir do vetor vetor_erro_parametro.
-    plt.hist(vetor_erro_amplitude_versus_fase, bins = 100, range = [-25000, 25000], edgecolor = 'black', linewidth = 1.2)
+    plt.hist(vetor_erro_amplitude_versus_fase, bins = 100, range = [-10000, 10000], edgecolor = 'black', linewidth = 1.2)
     
     # Posicionamento do texto no gráfico.
     plt.text(0.99, 0.98, texto, horizontalalignment = 'right',
@@ -160,25 +161,19 @@ def principal_histograma_BLUE1_erro_amplitude_versus_fase():
     
     vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
-    Matriz_Dados_Pulsos, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+    Matriz_Pulsos_Sinais, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
         
-    Matriz_Dados_Pulsos, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+    Matriz_Pulsos_Sinais, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
               
-    Matriz_Dados_Pulsos_Treino, Matriz_Dados_Pulsos_Teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_amplitude_referencia)
+    Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_amplitude_referencia)
     
-    Matriz_Dados_Pulsos_Treino, Matriz_Dados_Pulsos_Teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_Dados_Pulsos, vetor_fase_referencia)
+    Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_fase_referencia)
     
-    vetor_dados_ruidos = leitura_dados_ruidos(n_ocupacao)
+    lista_erro_estimacao_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, n_janelamento)
     
-    Matriz_Dados_Ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento)
+    media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase = dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_estimacao_amplitude_versus_fase)
     
-    Matriz_Covariancia = matriz_covariancia(Matriz_Dados_Ruidos)
-       
-    lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_Dados_Pulsos_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_Covariancia, n_janelamento)
-    
-    media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase = dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase)
-    
-    histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase)
+    histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_estimacao_amplitude_versus_fase, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase)
     
 # Chamada da função principal (main) do código.
 principal_histograma_BLUE1_erro_amplitude_versus_fase()

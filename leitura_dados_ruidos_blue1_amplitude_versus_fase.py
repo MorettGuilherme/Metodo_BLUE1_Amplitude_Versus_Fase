@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de julho de 2024.
+# Data: 16 de julho de 2024.
 
 # Objetivo do código: realização da leitura dos dados de ruídos no formato free running.
 

@@ -1,6 +1,6 @@
-A primeira versão do método Melhor Estimador Linear Não Enviesado (BEst Linear Blue Estimador - BLUE 1) tem o objetivo de encontrar um vetor de parâmetro estimados, cujos componentes são respectivamente: amplitude, amplitude vezes a fase e pedestal.
-Nesse repositório, o algoritmo foi desenvolvido para o cálculo do esrro de estimação do termo da amplitude versus a fse pela técnica de validação cruzada K-Fold.
-Comentários sobre os resultados: de acordo com a análise estatística pelo K-Fold notou-se que o janelamento 15 pode ser considerado como ideal para a estimação do erro do termo da amplitude versus a fase. 
+A primeira versão do método Melhor Estimador Linear Não Enviesado (BEst Linear Blue Estimador - BLUE 1) tem o objetivo de encontrar um vetor de parâmetros estimados, cujos componentes são respectivamente: amplitude, amplitude vezes a fase e pedestal.
+Nesse repositório, o algoritmo foi desenvolvido para o cálculo do erro de estimação do termo da amplitude versus a fse pela técnica de validação cruzada K-Fold.
+Comentários sobre os resultados: de acordo com a análise estatística pelo K-Fold notou-se que o janelamento 15 pode ser considerado como ideal para a estimação do termo da amplitude versus a fase. 
 Obs.: o comportamento do desvio padrão do termo da amplitude versus a fase foi conforme o esperado. Entretento, há dispersão dos dados em relação a média continua alta.
 
 A seguir são listadas as pastas e também os arquivos contidos nesse repositório, assim como suas respectivas funções:
@@ -36,9 +36,14 @@ A seguir são listadas as pastas e também os arquivos contidos nesse repositór
   * Essa pasta contém arquivos para cada uma das ocupações; os valores dos janelamentos com as médias, variâncias e desvios padrão das variâncias dos erros de estimação da amplitude versus a fase calculados pela técnica de validação cruzada K-Fold.
 
 11. Resultados_BLUE1_Amplitude_versus_fase
-   * Essa pasta com os gráficos dos dados estatísticos (média, variância e desvio padrão) para o erro de estimação da amplitude versus a fase pela técnica da validação cruzada K-Fold, assim como os histogramas para cada janelamento e ocupações e a análise do desempenho.
+   * Essa pasta com os gráficos dos dados estatísticos (média, variância e desvio padrão) para o erro de estimação da amplitude versus a fase pela técnica da validação cruzada K-Fold, assim como os histogramas para cada janelamento e ocupações e a análise do desempenho. 
 
-12. analise_desempenho_BLUE1_amplitude_versus_fase.py
+12. arquivo_saida_dados_estatisticos_BLUE1_amplitude_versus_fase.py
+   * Função para o cálculo dos dados estatísticos do erro de estimação pelo método Best Linear Unbiased Estimator (BLUE 1).
+   * Instrução para salvar os dados estatísticos do erro de estimação da amplitude, fase ou pedestal para determinada ocupação em um arquivo de saída.
+   * Instrução principal do código.
+
+13. arquivo_saida_desempenho_BLUE1_amplitude_versus_fase.py
    * Instrução para salvar em arquivos os dados estatísticos do desempenho do método BLUE 1 para a estimação da amplitude versus a fase.
    * Função para o cálculo do desempenho do método BLUE 1 pelo Erro Médio de Estimação (EME).
    * Função para o cálculo do desempenho do método BLUE 1 pelo Erro Médio Quadrático (Mean Squared Error - MSE).
@@ -46,53 +51,48 @@ A seguir são listadas as pastas e também os arquivos contidos nesse repositór
    * Função para o cálculo do desempenho do método BLUE 1 pela Relação Sinal-Ruído (Signal-to-Noise Ratio - SNR).
    * Função para o cálculo do desempenho do método BLUE 1 pelo desvio padrão (DP).
    * Instrução da validação cruzada K-Fold adaptada para o cálculo do desempenho do método BLUE 1 para a estimação da amplitude versus a fase.
-   * Instrução principal do código. 
+   * Instrução principal do código.
 
-13. arquivo arquivo_saida_dados_estatisticos_BLUE1_amplitude_versus_fase.py
-   * Função para o cálculo dos dados estatísticos do erro de estimação pelo método Best Linear Unbiased Estimator (BLUE 1).
-   * Instrução para salvar os dados estatísticos do erro de estimação da amplitude, fase ou pedestal para determinada ocupação em um arquivo de saída.
+14. arquivo_saida_k_fold_BLUE1_amplitude_versus_fase.py
+   * Instrução para salvar em arquivos os dados estatísticos pela validação cruzada k-Fold.
+   * Instrução da validação cruzada K-Fold.
    * Instrução principal do código.
    
-14. arquivo grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase.py
+15. grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento.
    * Instrução para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento.
    * Instrução principal do código.
 
-15. grafico_desempenho_BLUE1_amplitude_versus_fase.py
+16. grafico_desempenho_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados do desempenho do método BLUE 1 para a estimação da amplitude versus a fase de todas as ocupações para o janelamento ideal.
    * Instrução para o plote do gráfico do desempenho do método BLUE 1 para a estimação da amplitude versus a fase ao longo das ocupações para o janelamento ideal.
    * Instrução principal do código.
 
-16. arquivo grafico_k_fold_BLUE1_amplitude_versus_fase.py
+17. grafico_k_fold_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados estatísticos da validação cruzada K-Fold.
    * Instrução para a construção do gráfico tipo A da validação cruzada K-Fold.
    * Instrução para a construção do gráfico tipo B da validação cruzada K-Fold.
    * Instrução principal (main) do código.
    
-17. arquivo histograma_erro_amplitude_versus_fase_BLUE1.py
+18. histograma_erro_amplitude_versus_fase_BLUE1.py
    * Função para o cálculo da estatística do erro de estimação da amplitude, fase ou pedestal.
    * Função para o plote do histograma do erro de estimação da amplitude, fase ou pedestal.
    * Função principal.
    
-18. arquivo k_fold_BLUE1_amplitude_versus_fase.py
-   * Instrução para salvar em arquivos os dados estatísticos pela validação cruzada k-Fold.
-   * Instrução da validação cruzada K-Fold.
-   * Instrução principal do código.
-   
-19. arquivo leitura_dados_ocupacao_BLUE1_amplitude_versus_fase.py
+19. leitura_dados_ocupacao_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados de ocupação.
    * Função para a retirada do pedestal dos pulsos de sinais.
    * Função para a construção da matriz dos pulsos de sinais e o vetor do parâmetro de referência.
    * Função para separação em dados de treino e teste.
 
-20. arquivo leitura_dados_ruidos_BLUE1_amplitude_versus_fase.py
+20. leitura_dados_ruidos_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados de ruídos de acordo com a ocupação.
    * Função para a organização dos dados de ruídos de acordo com o janelamento.
    * Função para separação em dados de treino e teste.
    * Função para a construção da matriz de covariância.
    * Função para a construção da matriz de covariância como identidade.
 
-21. arquivo metodo_BLUE1_amplitude_versus_fase.py
+21. metodo_BLUE1_amplitude_versus_fase.py
    * Função para a definição do vetor pulso de referência.
    * Função para a definição do vetor da derivada temporal do pulso de referência.
    * Função para o método BLUE 1.
@@ -106,3 +106,5 @@ IMPORTANTE: os dados das ocupações foram simulados computacionalmente. As cara
 * Número de eventos: 2000000.
 * Fold: 100.
 * Os dados de ruídos para a construção da matriz de covariância foram os mesmo que para os pulsos de sinais.
+
+Obs.: antes da aplicação do método, o valor constante do pedestal foi retirado dos dados referentes aos pulsos de sinais.

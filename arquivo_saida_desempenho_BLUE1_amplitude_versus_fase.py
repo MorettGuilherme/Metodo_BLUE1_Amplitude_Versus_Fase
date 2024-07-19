@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de julho de 2024.
+# Data: 16 de julho de 2024.
 
 # Objetivo do código: cálculo do desempenho do método Best Linear Unbiased Estimator (BLUE 1) para a estimação da amplitude versus a fase pela validação cruzada K-Fold.
 
@@ -37,7 +37,7 @@ Entrada: número de elementos presentes em cada bloco e lista dos erros de estim
 Saída: valor do desvio padrão de cada bloco.
 
 7) Instrução da validação cruzada K-Fold adaptada para o cálculo do desempenho do método BLUE 1 para o cálculo do termo da amplitude versus a fase.
-Entrada: parâmetro, número de ocupação, número do janelamento ideal, opção da avaliação do desempenho, matriz com os pulsos de sinais, vetor do parâmetro de referência e a matriz de covariância.
+Entrada: parâmetro, número de ocupação, número do janelamento ideal, opção da avaliação do desempenho, matriz com os pulsos de sinais, vetor do parâmetro de referência.
 Saída: nada.
 
 8) Instrução principal do código.
@@ -69,7 +69,7 @@ print(titulo_programa)
 ### ----------------------------------------- 1) INSTRUÇÃO PARA SALVAR OS DADOS ESTATÍSTICOS DO K-FOLD ----------------------------------------- ###
 
 # Definição da instrução para salvar os dados estatísticos do desempenho do método BLUE 1 para a estimação da amplitude versus a fase em arquivo de saída.
-def arquivo_saida_dados_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janelamento_ideal, media_dado_desempenho, var_dado_desempenho, DP_dado_desempenho, mecanismo_desempenho):
+def arquivo_saida_dados_desempenho_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento_ideal, media_dado_desempenho, var_dado_desempenho, DP_dado_desempenho, mecanismo_desempenho):
 
     # Definição do título presente no arquivo de saída.
     titulo_arquivo_saida = f"n_ocupacao,media_{mecanismo_desempenho},var_{mecanismo_desempenho},DP_{mecanismo_desempenho}\n"
@@ -198,7 +198,7 @@ def DP(numero_elementos_bloco, bloco_erro_estimacao):
 ### ----------- 7) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD ADAPTADA PARA O CÁLCULO DO DESEMPENHO DO MÉTODO BLUE 1------------------- --------- ###
 
 # Definição da instrução da técnica de validação cruzada K-Fold para o cálculo do desempenho do método BLUE 1 para a estimação da amplitude versus a fase.
-def K_fold_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janelamento_ideal, opcao_avaliacao_desempenho, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_Covariancia):
+def K_fold_desempenho_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento_ideal, opcao_avaliacao_desempenho, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia):
 
     # Caso a variável opcao_avaliacao_desempenho seja igual a 1.
     if opcao_avaliacao_desempenho == 1:
@@ -297,7 +297,7 @@ def K_fold_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janel
         bloco_treino_fase_referencia = [elemento for sublista in bloco_treino_fase_referencia for elemento in sublista]
         
         # A variável bloco_lista_erro_parametro recebe o valor de retorno da função metodo_BLUE1.
-        bloco_lista_erro_parametro = metodo_BLUE1_amplitude_versus_fase(bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia, Matriz_Covariancia, n_janelamento_ideal)
+        bloco_lista_erro_parametro = metodo_BLUE1_amplitude_versus_fase(bloco_treino_pulsos_sinais, bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia, n_janelamento_ideal)
         
         # Caso a variável opcao_avaliacao_desempenho seja igual a 1.
         if opcao_avaliacao_desempenho == 1:
@@ -348,14 +348,14 @@ def K_fold_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janel
     DP_desempenho = np.std(lista_blocos_valores_desempenho)
      
     # Salva as informações dos dados estatísticos da análise do desempenho do método BLUE 1.
-    arquivo_saida_dados_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janelamento_ideal, media_desempenho, var_desempenho, DP_desempenho, mecanismo_desempenho)   
+    arquivo_saida_dados_desempenho_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento_ideal, media_desempenho, var_desempenho, DP_desempenho, mecanismo_desempenho)   
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ### 
 
 ### ---------------------------------------------- 8) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ----------------------------------------------------- ###
   
 # Definição da instrução principal (main) do código.
-def principal_desempenho_BLUE1_amplitude_versus_fase():
+def principal_desempenho_amplitude_versus_fase_BLUE1():
     
     # A variável parametro recebe a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
@@ -390,9 +390,6 @@ def principal_desempenho_BLUE1_amplitude_versus_fase():
     # Obs.: essa análise deve ser realizada previamento pela interpretação dos gráficos gerados pelo K-Fold (grafico_k_fold_BLUE1).
     n_janelamento_ideal = 15
     
-    # Definição da variável valor_pedestal_referencia.
-    valor_pedestal_referencia = 30
-    
     # Definição do tempo inicial.
     tempo_inicial = time.time()
     
@@ -407,17 +404,11 @@ def principal_desempenho_BLUE1_amplitude_versus_fase():
             
         vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
-        Matriz_Dados_Pulsos, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_ideal)
+        Matriz_Pulsos_Sinais, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_ideal)
             
-        Matriz_Dados_Pulsos, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento_ideal)
-
-        vetor_dados_ruidos = leitura_dados_ruidos(n_ocupacao)
+        Matriz_Pulsos_Sinais, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento_ideal)
     
-        Matriz_Dados_Ruidos = amostras_ruidos_janelamento(vetor_dados_ruidos, n_janelamento_ideal)
-    
-        Matriz_Covariancia = matriz_covariancia(Matriz_Dados_Ruidos)
-    
-        K_fold_desempenho_BLUE1_amplitude_versus_fase(parametro, n_ocupacao, n_janelamento_ideal, opcao_avaliacao_desempenho, Matriz_Dados_Pulsos, vetor_amplitude_referencia, vetor_fase_referencia, Matriz_Covariancia)
+        K_fold_desempenho_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento_ideal, opcao_avaliacao_desempenho, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia)
     
     # Definição do tempo final.
     tempo_final = time.time()
@@ -429,7 +420,7 @@ def principal_desempenho_BLUE1_amplitude_versus_fase():
     print(f"Tempo de execução: {tempo_execucao}")
      
 # Chamada da instrução principal do código.
-principal_desempenho_BLUE1_amplitude_versus_fase()       
+principal_desempenho_amplitude_versus_fase_BLUE1()       
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
 # Impressão de uma linha que representa o fim do programa.

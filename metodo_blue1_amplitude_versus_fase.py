@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de julho de 2024.
+# Data: 16 de julho de 2024.
 
 # Objetivo do código: Aplicação do método Best Linear Unbiased Estimator (BLUE 1) para estimar o termo da amplitude versus a fase.
 
@@ -22,7 +22,7 @@ Entrada: número de janelamento.
 Saída: vetor da derivada temporal do pulso de referência para cada instante de tempo de acordo com o janelamento.
 
 3) Função para o método BLUE 1 para a estimação da amplitude versus a fase.
-Entrada: matriz com os pulsos de sinais, vetor com a amplitude de referência, vetor com a fase de referência, matriz de covariância dos dados de ruídos e o número de janelamento.
+Entrada: matriz com os pulsos de sinais da etapa de treino, matriz com os pulsos de sinais da etapa de teste, vetor com a amplitude de referência, vetor com a fase de referência e o número de janelamento.
 Saída: lista com o erro de estimação pelo método BLUE 1 para o termo da amplitude versus a fase.
 """
 
@@ -182,10 +182,13 @@ def derivada_pulso_referencia(n_janelamento):
 ### ----------------------------------------------- 3) FUNÇÃO PARA O MÉTODO BLUE 1 ------------------------------------------------------------- ###
 
 # Definição da função para o método BLUE 1 para a estimação da amplitude versus a fase.
-def metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, Matriz_Covariancia, n_janelamento):
+def metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, n_janelamento):
 
     # Criação da lista vazia para armazenar os erros calculados para a amplitude versus a fase. 
     lista_erro_amplitude_versus_fase = []
+    
+    # A variável Matriz_Covariancia recebe o valor de retorno da função matriz_covariancia.
+    Matriz_Covariancia = matriz_covariancia(Matriz_Pulsos_Sinais_Treino)
     
     # A variável vetor_h recebe o retorno da função pulso_referencia.
     vetor_h = pulso_referencia(n_janelamento)

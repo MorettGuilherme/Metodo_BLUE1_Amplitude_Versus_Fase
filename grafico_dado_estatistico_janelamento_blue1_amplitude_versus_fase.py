@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 08 de julho de 2024.
+# Data: 16 de julho de 2024.
 
 # Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação do termo da amplitude versus a fase.
 
@@ -13,7 +13,7 @@ Funções presentes:
 
 1) Função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento.
 Entrada: número do janelamento.
-Saída: matriz com os dados de entrada organizados de acordo com a coluna (número da ocupação, média, variância e desvio padrão do erro de estimação do parâmetro de interesse).
+Saída: matriz com os dados de entrada organizados de acordo com a coluna (número da ocupação, média, variância e desvio padrão do erro de estimação).
 
 2) Instrução para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento.
 Entrada: dado estatístico desejado (média, variância ou desvio padrão) e a matriz dos dados.
@@ -145,7 +145,7 @@ def grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatist
         
 ### ---------------------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
 
-# Definição da função principal (main) para esse código.
+# Definição da função principal (main) do código.
 def principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase():
     
     # Impressão de mensagem no terminal.
