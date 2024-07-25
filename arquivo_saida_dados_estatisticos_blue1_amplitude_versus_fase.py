@@ -1,23 +1,23 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação do termo da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1).
+# Objetivo do código: geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação do termo da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
 
 """ 
 Organização do Código:
 
 Importação de arquivos.
-Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
+Método BLUE1 formatado para o cálculo do termo da amplitude versus fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
-1) Função para o cálculo dos dados estatísticos do erro de estimação pelo método Best Linear Unbiased Estimator (BLUE 1).
-Entrada: lista com o erro de estimação para a amplitude versus a fase.
-Saída: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus a fase.
+1) Função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
+Entrada: lista com o erro de estimação para a amplitude versus fase.
+Saída: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus fase.
 
-2) Instrução para salvar os dados estatísticos do erro de estimação da amplitude versus a fase para determinada ocupação em um arquivo de saída.
-Entrada: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus a fase.
+2) Instrução para salvar os dados estatísticos do erro de estimação da amplitude versus fase para determinada ocupação em um arquivo de saída.
+Entrada: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus fase.
 Saída: nada.
 
 3) Instrução principal do código.
@@ -43,36 +43,36 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1):\n", attrs=["bold"])
+titulo_programa = colored("Geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ---------------- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE ----------------------- ###
+### -------------- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------- ###
 
-# Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus a fase pelo método BLUE 1.
+# Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE 1.
 def dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase):
     
-    # A lista do erro de estimação da amplitude versus a fase é convertida para o tipo numpy array.
+    # A lista do erro de estimação da amplitude versus fase é convertida para o tipo numpy array.
     vetor_erro_estimacao_amplitude_versus_fase = np.array(lista_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo da média do erro de estimação da amplitude versus a fase.
+    # Cálculo da média do erro de estimação da amplitude versus fase.
     media_erro_estimacao_amplitude_versus_fase = np.mean(vetor_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo da variância do erro de estimação da amplitude versus a fase.
+    # Cálculo da variância do erro de estimação da amplitude versus fase.
     var_erro_estimacao_amplitude_versus_fase = np.var(vetor_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo do desvio padrão do erro de estimação da amplitude versus a fase.
+    # Cálculo do desvio padrão do erro de estimação da amplitude versus fase.
     desvio_padrao_erro_estimacao_amplitude_versus_fase = np.std(vetor_erro_estimacao_amplitude_versus_fase)
     
-    # A função retorna a média, a variância e o desvio padrão dos dados do erro de estimação da amplitude versus a fase.
+    # A função retorna a média, a variância e o desvio padrão dos dados do erro de estimação da amplitude versus fase.
     return media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ------- 2) FUNÇÃO PARA A IMPRESSÃO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE EM UM ARQUIVO DE SAÍDA ----------- ###
+### --- 2) FUNÇÃO PARA A IMPRESSÃO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE EM UM ARQUIVO DE SAÍDA PELO MÉTODO BLUE1 --- ###
 
-# Definição da função para a impressão em um arquivo de saída, os dados estatísticos do erro de estimação da amplitude versus a fase pelo método BLUE 1.
+# Definição da função para a impressão em um arquivo de saída, os dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE1.
 def arquivo_saida_dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase):
 
     # Definição do título presente no arquivo de saída.
@@ -159,13 +159,13 @@ def principal_arquivo_saida_dados_estatisticos_amplitude_versus_fase_BLUE1():
     
             vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_sem_pedestal)
             
-            Matriz_Pulsos_Sinais, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
-            Matriz_Pulsos_Sinais, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+            Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+            Matriz_Pulsos_Sinais_janelado, vetor_fase_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
             
-            Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_amplitude_referencia)
-            Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_fase_referencia)
+            Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_amplitude_referencia_treino_janelado, vetor_amplitude_referencia_teste_janelado = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado)
+            Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_fase_referencia_treino_janelado, vetor_fase_referencia_teste_janelado = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado, vetor_fase_referencia_janelado)
     
-            lista_erro_estimacao_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, n_janelamento)
+            lista_erro_estimacao_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(n_janelamento, Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_amplitude_referencia_teste_janelado, vetor_fase_referencia_teste_janelado)
             
             media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase = dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase)
     

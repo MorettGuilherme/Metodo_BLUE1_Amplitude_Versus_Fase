@@ -1,23 +1,23 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: implementação da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação do termo da amplitude versus a fase.
+# Objetivo do código: implementação da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE1) para a estimação do termo da amplitude versus fase.
 
 """ 
 Organização do código:
 
 Importação de arquivos.
-Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
+Método BLUE1 formatado para o cálculo do termo da amplitude versus fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
-1) Instrução para salvar em arquivos os dados estatísticos pela validação cruzada k-Fold.
+1) Instrução para salvar em arquivos os dados estatísticos pela validação cruzada k-Fold para a estimação da amplitude versus a fase pelo método BLUE1.
 Entrada: número de ocupação, número do janelamento, média do dado estatístico, variância do dado estatístico, desvio padrão do dado estatístico de interesse.
 Saída: nada.
 
-2) Instrução da validação cruzada K-Fold.
-Entrada: matriz com os pulsos de sinal e o vetor da amplitude versus a fase.
+2) Instrução da validação cruzada K-Fold para a estimação da amplitude versus a fase pelo método BLUE1.
+Entrada: matriz com os pulsos de sinal e o vetor da amplitude versus fase.
 Saída: nada.
 
 3) Instrução principal do código.
@@ -41,15 +41,15 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Geração de arquivos de saída pela técnica de validação cruzada K-Fold para a estimação da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1):\n", attrs=["bold"])
+titulo_programa = colored("Geração de arquivos de saída pela técnica de validação cruzada K-Fold para a estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ----------------------------------------- 1) INSTRUÇÃO PARA SALVAR OS DADOS ESTATÍSTICOS DO K-FOLD ----------------------------------------- ###
+### ---------- 1) INSTRUÇÃO PARA SALVAR OS DADOS ESTATÍSTICOS DO K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------ ###
 
-# Definição da instrução para salvar as médias dos dados estatísticos da valiudação cruzada K-Fold em arquivo de saída.
-def arquivo_saida_dados_estatisticos_k_fold_erro_BLUE1(parametro, n_ocupacao, n_janelamento, media_dado_erro, var_dado_erro, DP_dado_erro, dado):
+# Definição da instrução para salvar as médias dos dados estatísticos da validação cruzada K-Fold em arquivo de saída para a estimação da amplitude versus a fase pelo método BLUE1.
+def arquivo_saida_dados_estatisticos_k_fold_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_dado_erro, var_dado_erro, DP_dado_erro, dado):
 
     # Definição do título presente no arquivo de saída.
     titulo_arquivo_saida = f"janelamento,media_{dado}_erro,var_{dado}_erro,DP_{dado}_erro\n"
@@ -95,10 +95,10 @@ def arquivo_saida_dados_estatisticos_k_fold_erro_BLUE1(parametro, n_ocupacao, n_
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ----------------------------------------------- 2) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD ----------------------------------------------- ###
+### ----------------- 2) INSTRUÇÃO PARA A VALIDAÇÃO CRUZADA K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ---------------- ###
 
-# Definição da instrução da técnica de validação cruzada K-Fold.
-def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia):
+# Definição da instrução da técnica de validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
+def K_fold_amplitude_versus_fase_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado, vetor_fase_referencia_janelado):
     
     # Criação da variável parâmetro que armazena a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
@@ -116,23 +116,23 @@ def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitud
     quantidade_blocos = 100
 
     # Definição da quantidade de elementos de cada bloco.
-    quantidade_elementos_bloco = len(Matriz_Pulsos_Sinais) // quantidade_blocos
+    quantidade_elementos_bloco = len(Matriz_Pulsos_Sinais_Janelado) // quantidade_blocos
     
     # Para i de início em zero até a quantidade de elementos de amostras com incremento igual a quantidade_elementos_bloco.
-    for i in range(0, len(Matriz_Pulsos_Sinais), quantidade_elementos_bloco):
+    for i in range(0, len(Matriz_Pulsos_Sinais_Janelado), quantidade_elementos_bloco):
     
         # Definição do bloco de pulsos de sinais.
-        bloco_pulsos_sinais = Matriz_Pulsos_Sinais[i:i+quantidade_elementos_bloco]
+        bloco_pulsos_sinais = Matriz_Pulsos_Sinais_Janelado[i:i+quantidade_elementos_bloco]
         # O bloco dos pulsos de sinais é acrescentado a lista dos blocos dos pulsos de sinais.
         blocos_pulsos_sinais.append(bloco_pulsos_sinais)
     
         # Definição do bloco dos dados da amplitude de referência.
-        bloco_amplitude_referencia = vetor_amplitude_referencia[i:i+quantidade_elementos_bloco]
+        bloco_amplitude_referencia = vetor_amplitude_referencia_janelado[i:i+quantidade_elementos_bloco]
         # O bloco da amplitude de referência é acrescentado a lista dos blocos da amplitude de referência.
         blocos_amplitude_referencia.append(bloco_amplitude_referencia)
         
         # Definição do bloco dos dados da fase de referência.
-        bloco_fase_referencia = vetor_fase_referencia[i:i+quantidade_elementos_bloco]
+        bloco_fase_referencia = vetor_fase_referencia_janelado[i:i+quantidade_elementos_bloco]
         # O bloco da fase de referência é acrescentado a lista dos blocos da fase de referência.
         blocos_fase_referencia.append(bloco_fase_referencia)
     
@@ -176,7 +176,7 @@ def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitud
         bloco_treino_fase_referencia = [elemento for sublista in bloco_treino_fase_referencia for elemento in sublista]
         
         # A variável bloco_lista_erro_amplitude_versus_fase recebe o valor de retorno da função metodo_BLUE1.
-        bloco_lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(bloco_treino_pulsos_sinais, bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia, n_janelamento)
+        bloco_lista_erro_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase( n_janelamento, bloco_treino_pulsos_sinais, bloco_teste_pulsos_sinais, bloco_teste_amplitude_referencia, bloco_teste_fase_referencia)
 
         # Cálculo dos dados estatísticos de cada bloco.
         bloco_media_erro = np.mean(bloco_lista_erro_amplitude_versus_fase)
@@ -194,7 +194,7 @@ def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitud
     DP_media_blocos_erro_parametro = np.std(lista_blocos_media_erro)
      
     # Salva a informação dos dados estatísticos da média do erro de estimação do parâmetro em seus respectivos arquivos de saída.   
-    arquivo_saida_dados_estatisticos_k_fold_erro_BLUE1(parametro, n_ocupacao, n_janelamento, media_media_blocos_erro_parametro, var_media_blocos_erro_parametro, DP_media_blocos_erro_parametro, dado = "media")
+    arquivo_saida_dados_estatisticos_k_fold_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_media_blocos_erro_parametro, var_media_blocos_erro_parametro, DP_media_blocos_erro_parametro, dado = "media")
         
     # Cálculo dos dados estatísticos da variância.
     media_var_blocos_erro_parametro = np.mean(lista_blocos_var_erro)
@@ -202,7 +202,7 @@ def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitud
     DP_var_blocos_erro_parametro = np.std(lista_blocos_var_erro)
       
     # Salva a informação dos dados estatísticos da variância do erro de estimação do parâmetro em seus respectivos arquivos de saída.  
-    arquivo_saida_dados_estatisticos_k_fold_erro_BLUE1(parametro, n_ocupacao, n_janelamento, media_var_blocos_erro_parametro, var_var_blocos_erro_parametro, DP_var_blocos_erro_parametro, dado = "var")
+    arquivo_saida_dados_estatisticos_k_fold_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_var_blocos_erro_parametro, var_var_blocos_erro_parametro, DP_var_blocos_erro_parametro, dado = "var")
         
     # Cálculo dos dados estatísticos do desvio padrão.
     media_DP_blocos_erro_parametro = np.mean(lista_blocos_DP_erro)
@@ -210,11 +210,11 @@ def K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitud
     DP_DP_blocos_erro_parametro = np.std(lista_blocos_DP_erro)
     
     # Salva a informação dos dados estatísticos do desvio padrão do erro de estimação do parâmetro em seus respectivos arquivos de saída.
-    arquivo_saida_dados_estatisticos_k_fold_erro_BLUE1(parametro, n_ocupacao, n_janelamento, media_DP_blocos_erro_parametro, var_DP_blocos_erro_parametro, DP_DP_blocos_erro_parametro, dado = "DP")
+    arquivo_saida_dados_estatisticos_k_fold_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_DP_blocos_erro_parametro, var_DP_blocos_erro_parametro, DP_DP_blocos_erro_parametro, dado = "DP")
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ### 
 
-### ----------------------------------------- 3) INSTRUÇÃO PARA APLICAR O K-FOLD EM TODAS AS OCUPAÇÕES ----------------------------------------- ###
+### ---------- 3) INSTRUÇÃO PARA APLICAR O K-FOLD EM TODAS AS OCUPAÇÕES PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------ ###
   
 # Definição da função principal (main) do código.
 def principal_K_fold_BLUE1_amplitude_versus_fase():
@@ -251,13 +251,13 @@ def principal_K_fold_BLUE1_amplitude_versus_fase():
             
             vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
-            Matriz_Pulsos_Sinais, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+            Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
             
-            Matriz_Pulsos_Sinais, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+            Matriz_Pulsos_Sinais_Janelado, vetor_fase_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
 
-            K_fold_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais, vetor_amplitude_referencia, vetor_fase_referencia)
+            principal_K_fold_BLUE1_amplitude_versus_fase(n_ocupacao, n_janelamento, Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado, vetor_fase_referencia_janelado)
      
-# Chamada da função K_fold_OC.
+# Chamada da instrução principal do código.
 principal_K_fold_BLUE1_amplitude_versus_fase()       
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 

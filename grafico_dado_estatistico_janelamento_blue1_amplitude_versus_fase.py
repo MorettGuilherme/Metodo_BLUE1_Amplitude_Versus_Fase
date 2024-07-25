@@ -1,8 +1,8 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
 # Data: 16 de julho de 2024.
 
-# Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação do termo da amplitude versus a fase.
+# Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método Best Linear Unbiased Estimator (BLUE1) para a estimação do termo da amplitude versus fase.
 
 """ 
 Organização do Código:
@@ -11,11 +11,11 @@ Leitura dos dados estatísticos de todas as ocupações para um determinado jane
 
 Funções presentes:
 
-1) Função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento.
+1) Função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento para a estimação da amplitude versus fase pelo método BLUE1.
 Entrada: número do janelamento.
 Saída: matriz com os dados de entrada organizados de acordo com a coluna (número da ocupação, média, variância e desvio padrão do erro de estimação).
 
-2) Instrução para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento.
+2) Instrução para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento para a estimação da amplitude versus fase pelo método BLUE1.
 Entrada: dado estatístico desejado (média, variância ou desvio padrão) e a matriz dos dados.
 Saída: nada.
 
@@ -36,15 +36,15 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Plote do gráfico do dado estatístico do erro de estimação da amplitude versus a fase ao longo das ocupações para um determinado janelamento pelo método Best Linear Unbiased Estimator (BLUE 1):\n", attrs=["bold"])
+titulo_programa = colored("Plote do gráfico do dado estatístico do erro de estimação da amplitude versus fase ao longo das ocupações para um determinado janelamento pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### -------------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DE TODAS AS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO ----------------------- ###
+### ----- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DE TODAS AS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ----------- ###
 
-# Definição da função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento.
-def leitura_dados_estatisticos_janelamento(parametro, n_janelamento):
+# Definição da função para a leitura dos dados estatísticos de todas as ocupações para um determinado janelamento para a estimação da amplitude versus fase pelo método BLUE1.
+def leitura_dados_estatisticos_janelamento_amplitude_versus_fase_BLUE1(parametro, n_janelamento):
 
     # Nome da pasta em que se encontra o arquivo de entrada dos dados estatísticos de acordo com o janelamento.
     pasta_dados_estatisticos_janelamento = f"Dados_Estatisticos_BLUE1_{parametro}_OC"
@@ -78,10 +78,10 @@ def leitura_dados_estatisticos_janelamento(parametro, n_janelamento):
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ------------ 2) FUNÇÃO PARA O PLOTE DOS GRÁFICO DO DADO ESTATÍSTICO AO LONGO DAS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO ----------------- ###
+### ----- 2) FUNÇÃO PARA O PLOTE DOS GRÁFICO DO DADO ESTATÍSTICO AO LONGO DAS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------- ###
 
-# Definição da função para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento.
-def grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento):
+# Definição da função para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento para a estimação da amplitude versus a fase pelo método BLUE1.
+def grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento):
     
     # Definição da variável indice_coluna_ocupações que armazena o valor do índice da coluna das ocupações.
     indice_coluna_ocupacoes = 0
@@ -146,7 +146,7 @@ def grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatist
 ### ---------------------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
 
 # Definição da função principal (main) do código.
-def principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase():
+def principal_grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1():
     
     # Impressão de mensagem no terminal.
     print("Opções de análise:\nMédia: 1\nVariância: 2\nDesvio padrão: 3\n")
@@ -186,11 +186,11 @@ def principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase()
         
     # Chamada das funções.
     
-    Matriz_Dados_Estatisticos_Janelamento = leitura_dados_estatisticos_janelamento(parametro, n_janelamento)
-    grafico_dado_estatistico_janelamento(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento)
+    Matriz_Dados_Estatisticos_Janelamento = leitura_dados_estatisticos_janelamento_amplitude_versus_fase_BLUE1(parametro, n_janelamento)
+    grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento)
     
-# Chamada da função principal do código.
-principal_grafico_dado_estatistico_janelamento_BLUE1_amplitude_versus_fase()
+# Chamada da instrução principal do código.
+principal_grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1()
 
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")

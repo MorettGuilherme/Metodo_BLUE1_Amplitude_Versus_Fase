@@ -72,12 +72,13 @@ A seguir são listadas as pastas e também os arquivos contidos nesse repositór
    * Função para a leitura dos dados estatísticos da validação cruzada K-Fold.
    * Instrução para a construção do gráfico tipo A da validação cruzada K-Fold.
    * Instrução para a construção do gráfico tipo B da validação cruzada K-Fold.
-   * Instrução principal (main) do código.
+   * Instrução principal do código.
    
 18. histograma_erro_amplitude_versus_fase_BLUE1.py
    * Função para o cálculo da estatística do erro de estimação da amplitude, fase ou pedestal.
-   * Função para o plote do histograma do erro de estimação da amplitude, fase ou pedestal.
-   * Função principal.
+   * Instrução para o plote do histograma do erro do tipo A de estimação da amplitude, fase ou pedestal.
+   * Instrução para o plote do histograma do erro do tipo B de estimação da amplitude, fase ou pedestal.
+   * Instrução principal do código.
    
 19. leitura_dados_ocupacao_BLUE1_amplitude_versus_fase.py
    * Função para a leitura dos dados de ocupação.

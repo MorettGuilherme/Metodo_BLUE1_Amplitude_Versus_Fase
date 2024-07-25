@@ -1,24 +1,24 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: construção do gráfico da validação cruzada K-Fold para a estimação do termo da amplitude versus a fase.
+# Objetivo do código: construção do gráfico da validação cruzada K-Fold para a estimação do termo da amplitude versus fase.
 
 """ 
 Organização do código:
 
 Funções presentes:
 
-1) Função para a leitura dos dados estatísticos da validação cruzada K-Fold.
+1) Função para a leitura dos dados estatísticos da validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
 Entrada: número de ocupação.
 Saída: matriz com os dados da ocupação organizados de acordo com a coluna (número do janelamento, média, variância e desvio padrão do dado estatístico)
 
-2) Instrução para a construção do gráfico tipo A da validação cruzada K-Fold.
+2) Instrução para a construção do gráfico tipo A da validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
 Obs.: esse gráfico mostra a média do dado estatístico (média, variância e desvio padrão do erro de estimação da amplitude versus a fase) com as barras de erro para cada um dos janelamentos ao decorrer das ocupações.
 Entrada: matriz com os dados da ocupação organizados.
 Saída: nada.
 
-3) Instrução para a construção do gráfico tipo B da validação cruzada K-Fold.
+3) Instrução para a construção do gráfico tipo B da validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
 Obs.: esse gráfico mostra a média do dado estatístico (média, variância e desvio padrão do erro de estimação da amplitude versus a fase) com as barras de erro para cada uma das ocupações ao decorrer do janelamento.
 Entrada: matriz com os dados da ocupação organizados.
 Saída: nada.
@@ -40,15 +40,15 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Plote do gráfico da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE 1) para a estimação da amplitude versus a fase:\n", attrs=["bold"])
+titulo_programa = colored("Plote do gráfico da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE1) para a estimação da amplitude versus fase:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### --------------------------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DA VALIDAÇÃO CRUZADA K-FOLD ------------------------------------ ###
+### -------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DA VALIDAÇÃO CRUZADA K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1  ------ ###
 
-# Definição da função para a leitura dos dados estatísticos do K-Fold.
-def leitura_dados_estatisticos_k_fold_BLUE1(parametro, n_ocupacao, dado_estatistico):
+# Definição da função para a leitura dos dados estatísticos do K-Fold para a estimação da amplitude versus fase.
+def leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, dado_estatistico):
     
     # Nome da pasta em que se encontra o arquivo de entrada dos dados estatísticos do K-Fold.
     pasta_dados_k_fold = f"K_Fold_{parametro}_{dado_estatistico}_Dados_Estatisticos_BLUE1_OC"
@@ -82,10 +82,10 @@ def leitura_dados_estatisticos_k_fold_BLUE1(parametro, n_ocupacao, dado_estatist
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ------------------------------ 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO A DA VALIDAÇÃO CRUZADA K-FOLD ----------------------------- ###
+### ------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO A DA VALIDAÇÃO CRUZADA K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------- ###
 
-# Definição da função para a construção do gráfico tipo A pela validação cruzada K-Fold.
-def grafico_A_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
+# Definição da função para a construção do gráfico tipo A pela validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
+def grafico_A_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
     
     # Definição da variável indice_coluna_janelamento que armazena o índice da coluna do janelamento.
     indice_coluna_janelamento = 0
@@ -195,10 +195,10 @@ def grafico_A_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### -------------------------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO B DA VALIDAÇÃO CRUZADA K-FOLD --------------------------- ###
+### ------ 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO B DA VALIDAÇÃO CRUZADA K-FOLD PARA ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 --------- ###
 
-# Definição da função para a construção do gráfico do tipo B pela validação cruzada K-Fold.
-def grafico_B_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
+# Definição da função para a construção do gráfico do tipo B pela validação cruzada K-Fold para estimação da amplitude versus fase pelo método BLUE1.
+def grafico_B_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
     
     # Definição do vetor das ocupações.
     ocupacoes = np.arange(0, 101, 10)
@@ -296,7 +296,7 @@ def grafico_B_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_
 ### ---------------------------------------------------- 4) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ----------------------------------------------- ###
 
 # Definição da instrução principal (main) do código.
-def principal_grafico_k_fold_BLUE1_amplitude_versus_fase():
+def principal_grafico_k_fold_amplitude_versus_fase_BLUE1():
     
     # A variável parametro armazena a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
@@ -357,34 +357,34 @@ def principal_grafico_k_fold_BLUE1_amplitude_versus_fase():
         
     # Chamada ordenada das funções.  
       
-    Matriz_Dados_K_Fold_OC_0 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 0, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_10 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 10, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_20 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 20, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_30 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 30, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_40 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 40, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_50 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 50, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_60 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 60, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_70 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 70, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_80 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 80, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_90 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 90, dado_estatistico)
-    Matriz_Dados_K_Fold_OC_100 = leitura_dados_estatisticos_k_fold_BLUE1(parametro, 100, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_0 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 0, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_10 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 10, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_20 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 20, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_30 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 30, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_40 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 40, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_50 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 50, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_60 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 60, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_70 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 70, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_80 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 80, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_90 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 90, dado_estatistico)
+    Matriz_Dados_K_Fold_OC_100 = leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, 100, dado_estatistico)
     
     # Caso a variável tipo_grafico seja "A".
     if tipo_grafico == "A":
         
-        # Chamada da função grafico_A_k_fold_BLUE1.
-        grafico_A_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100)
+        # Chamada da função grafico_A_k_fold_amplitude_versus_fase_BLUE1.
+        grafico_A_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100)
       
     # Caso a variável tipo_grafico seja "B".  
     elif tipo_grafico == "B":
     
-        # Chamada da função grafico_B_k_fold_BLUE1.
-        grafico_B_k_fold_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100)
+        # Chamada da função grafico_B_k_fold_amplitude_versus_fase_BLUE1.
+        grafico_B_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100)
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-# Chamada da função principal do código.
-principal_grafico_k_fold_BLUE1_amplitude_versus_fase()
+# Chamada da instrução principal do código.
+principal_grafico_k_fold_amplitude_versus_fase_BLUE1()
 
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")   

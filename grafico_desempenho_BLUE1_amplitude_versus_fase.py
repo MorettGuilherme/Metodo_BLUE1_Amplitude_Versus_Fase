@@ -1,8 +1,8 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: gráfico do desempenho (EME, MSE, MAE, SNR E DP) ao longo das ocupações de acordo com o janelamento ideal para o método BLUE 1 para a estimação da amplitude versus a fase.
+# Objetivo do código: gráfico do desempenho (EME, MSE, MAE, SNR E DP) ao longo das ocupações de acordo com o janelamento ideal para o método BLUE1 para a estimação da amplitude versus fase.
 
 """ 
 Organização do Código:
@@ -11,12 +11,12 @@ Leitura dos dados estatísticos de todas as ocupações para um determinado jane
 
 Funções presentes:
 
-1) Função para a leitura dos dados do desempenho do método BLUE 1 de todas as ocupações para o janelamento ideal.
+1) Função para a leitura dos dados do desempenho do método BLUE1 de todas as ocupações para o janelamento ideal para a estimação da amplitude versus fase.
 Entrada: parâmetro estimado, número do janelamento ideal, opção de avaliação do desempenho.
-Saída: matriz com os dados de entrada organizados de acordo com a coluna (número da ocupação, média, variância e desvio padrão do desempenho do método BLUE 1).
+Saída: matriz com os dados de entrada organizados de acordo com a coluna (número da ocupação, média, variância e desvio padrão do desempenho do método BLUE1 para a estimação da amplitude versus fase).
 
-2) Instrução para o plote do gráfico do desempenho do método BLUE 1 ao longo das ocupações para o janelamento ideal.
-Entrada: matriz dos dados de desempenho do método BLUE 1.
+2) Instrução para o plote do gráfico do desempenho do método BLUE1 ao longo das ocupações para o janelamento ideal para a estimação da amplitude versus fase.
+Entrada: matriz dos dados de desempenho do método BLUE1 para a estimação da amplitude versus fase.
 Saída: nada.
 
 3) Instrução principal do código.
@@ -36,15 +36,15 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Plote do gráfico do desempenho (EME, MSE, MAE, SNR ou DP) ao longo das ocupações de acordo com o janelamento ideal para o método BLUE 1 para a estimação da amplitude versus a fase:\n", attrs=["bold"])
+titulo_programa = colored("Plote do gráfico do desempenho (EME, MSE, MAE, SNR ou DP) ao longo das ocupações de acordo com o janelamento ideal para o método BLUE1 para a estimação da amplitude versus a fase:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### ------------------------------ 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DO DESEMPENHO DO MÉTODO BLUE 1 ------------------------------ ###
+### ---------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DO DESEMPENHO DA ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE PELO MÉTODO BLUE1 --------- ###
 
-# Definição da função para a leitura dos dados estatísticos do desempenho do método BLUE 1 para a estimação da amplitude versus a fase.
-def leitura_dados_estatisticos_desempenho_BLUE1_amplitude_versus_fase(parametro, n_janelamento_ideal, opcao_avaliacao_desempenho):
+# Definição da função para a leitura dos dados estatísticos do desempenho do método BLUE1 para a estimação da amplitude versus fase.
+def leitura_dados_estatisticos_desempenho_amplitude_versus_fase_BLUE1(parametro, n_janelamento_ideal, opcao_avaliacao_desempenho):
 
     # Nome da pasta em que se encontra o arquivo de entrada dos dados estatísticos do desempenho de acordo com o janelamento ideal.
     pasta_dados_estatisticos_desempenho = f"K_Fold_{parametro}_{opcao_avaliacao_desempenho}_Desempenho_BLUE1_OC"
@@ -78,10 +78,10 @@ def leitura_dados_estatisticos_desempenho_BLUE1_amplitude_versus_fase(parametro,
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ---------- 2) FUNÇÃO PARA O PLOTE DO GRÁFICO DO DADO ESTATÍSTICO DO DESEMPENHO AO LONGO DAS OCUPAÇÕES PARA O JANELAMENTO IDEAL ------------ ###
+### ------ 2) FUNÇÃO PARA O PLOTE DO GRÁFICO DO DADO ESTATÍSTICO DO DESEMPENHO AO LONGO DAS OCUPAÇÕES PARA O JANELAMENTO IDEAL DA ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE PELO MÉTODO BLUE1 ------- ###
 
-# Definição da função para o plote do gráfico do dado estatístico do desempenho ao longo das ocupações para o janelamento ideal.
-def grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase(opcao_avaliacao_desempenho, Matriz_Dados_Desempenho):
+# Definição da função para o plote do gráfico do dado estatístico do desempenho ao longo das ocupações para o janelamento ideal da estimação da amplitude versus fase pelo método BLUE1.
+def grafico_dado_estatistico_desempenho_amplitude_versus_fase_BLUE1(opcao_avaliacao_desempenho, Matriz_Dados_Desempenho):
     
     # Definição da variável indice_coluna_ocupacoes que armazena o valor do índice da coluna das ocupações.
     indice_coluna_ocupacoes = 0
@@ -155,7 +155,7 @@ def grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase(opcao_avalia
 ### ---------------------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
 
 # Definição da instrução principal (main) para esse código.
-def principal_grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase():
+def principal_grafico_dado_estatistico_desempenho_amplitude_versus_fase_BLUE1():
     
     # A variável parametro recebe a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
@@ -215,14 +215,14 @@ def principal_grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase():
         
     # Chamada das funções.
     
-    Matriz_Dados_Desempenho = leitura_dados_estatisticos_desempenho_BLUE1_amplitude_versus_fase(parametro, n_janelamento_ideal, mecanismo_desempenho)
+    Matriz_Dados_Desempenho = leitura_dados_estatisticos_desempenho_amplitude_versus_fase_BLUE1(parametro, n_janelamento_ideal, mecanismo_desempenho)
     
-    grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase(opcao_avaliacao_desempenho, Matriz_Dados_Desempenho)
+    grafico_dado_estatistico_desempenho_amplitude_versus_fase_BLUE1(opcao_avaliacao_desempenho, Matriz_Dados_Desempenho)
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
     
-# Chamada da isntrução principal do código.
-principal_grafico_dado_estatistico_desempenho_BLUE1_amplitude_versus_fase()
+# Chamada da instrução principal do código.
+principal_grafico_dado_estatistico_desempenho_amplitude_versus_fase_BLUE1()
 
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")

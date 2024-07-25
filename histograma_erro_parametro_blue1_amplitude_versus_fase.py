@@ -1,26 +1,30 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: análise do erro absoluto do parâmetro da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1).
+# Objetivo do código: análise do erro de estimação do parâmetro da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
 
 """
 Organização do Código:
 
 Importação de arquivos.
-Método BLUE 1 formatado para o cálculo do termo da amplitude versus a fase: metodo_BLUE1_amplitude_versus_fase.py
+Método BLUE1 para a estimação da amplitude versus fase: metodo_BLUE1_amplitude_versus_fase.py
 
 Funções presentes:
 
-1) Função para o cálculo da estatística do erro de estimação da amplitude versus a fase.
-Entrada: lista com os erros de estimação da amplitude versus a fase.
-Saída: a média, a variância e o desvio padrão do erro de estimação da amplitude versus a fase.
+1) Função para o cálculo da estatística do erro de estimação da amplitude versus fase pelo método BLUE1.
+Entrada: lista com os erros de estimação da amplitude versus fase.
+Saída: a média, a variância e o desvio padrão do erro de estimação da amplitude versus fase.
 
-2) Instrução para o plote do histograma do erro de estimação da amplitude versus a fase.
-Entrada: lista com os erros de estimação da amplitude versus a fase e seus dados estatísticos.
+2) Instrução para o plote do histograma do tipo A do erro de estimação da amplitude versus fase pelo método BLUE1.
+Entrada: lista com os erros de estimação da amplitude versus fase e seus dados estatísticos.
 Saída: nada.
 
-3) Instrução principal.
+3) Instrução para o plote do histograma do tipo B do erro de estimação da amplitude versus fase pelo método BLUE1.
+Entrada: número de ocupação, parâmetro, lista com os erros de estimação da amplitude versus fase e seus dados estatísticos para os janelamento 7, 15 e 19.
+Saída: nada.
+
+4) Função principal.
 Entrada: nada.
 Saída: nada.
 """
@@ -41,40 +45,40 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Análise do erro de estimação da amplitude versus a fase pelo método Best Linear Unbiased Estimator (BLUE 1):\n", attrs=["bold"])
+titulo_programa = colored("Análise do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
-### -------------------- 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE ----------------------- ###
+### ------------ 1) FUNÇÃO PARA O CÁLCULO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 --------------- ###
 
-# Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus a fase.
-def dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_amplitude_versus_fase):
+# Definição da função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE1.
+def dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase):
     
-    # A lista do erro de estimação da amplitude versus a fase é convertida para o tipo numpy array.
-    vetor_erro_amplitude_versus_fase = np.array(lista_erro_amplitude_versus_fase)
+    # A lista do erro de estimação da amplitude versus fase é convertida para o tipo numpy array.
+    vetor_erro_estimacao_amplitude_versus_fase = np.array(lista_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo da média do erro de estimação da amplitude versus a fase.
-    media_erro_amplitude_versus_fase = np.mean(vetor_erro_amplitude_versus_fase)
+    # Cálculo da média do erro de estimação da amplitude versus fase.
+    media_erro_estimacao_amplitude_versus_fase = np.mean(vetor_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo da variância do erro de estimação da amplitude versus a fase.
-    var_erro_amplitude_versus_fase = np.var(vetor_erro_amplitude_versus_fase)
+    # Cálculo da variância do erro de estimação da amplitude versus fase.
+    var_erro_estimacao_amplitude_versus_fase = np.var(vetor_erro_estimacao_amplitude_versus_fase)
 
-    # Cálculo do desvio padrão do erro de estimação da amplitude versus a fase.
-    desvio_padrao_erro_amplitude_versus_fase = np.std(vetor_erro_amplitude_versus_fase)
+    # Cálculo do desvio padrão do erro de estimação da amplitude versus fase.
+    desvio_padrao_erro_estimacao_amplitude_versus_fase = np.std(vetor_erro_estimacao_amplitude_versus_fase)
     
-    # A função retorna a média, a variância e o desvio padrão dos dados do erro de estimação da amplitude versus a fase.
-    return media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase
+    # A função retorna a média, a variância e o desvio padrão dos dados do erro de estimação da amplitude versus fase.
+    return media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ----------------------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS A FASE -------------------------- ###
+### --------------- 2) FUNÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------------ ###
 
-# Definição de instrução para o plot do histograma do erro de estimação da amplitude versus a fase.
-def histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude_versus_fase, media_erro_amplitude_versus_fase, var_erro_amplitude_versus_fase, desvio_padrao_erro_amplitude_versus_fase):
+# Definição de função para o plot do histograma do tipo A do erro de estimação da amplitude versus fase pelo método BLUE1.
+def histograma_A_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametro, lista_erro_estimacao_parametro, media_erro_estimacao_parametro, var_erro_estimacao_parametro, desvio_padrao_erro_estimacao_parametro):
     
-    # A lista do erro de estimação da amplitude versus fase é convertida para o tipo numpy array.
-    vetor_erro_amplitude_versus_fase = np.array(lista_erro_amplitude_versus_fase)
+    # A lista do erro de estimação do parâmetro é convertida para o tipo numpy array.
+    vetor_erro_estimacao_parametro = np.array(lista_erro_estimacao_parametro)
 
     # Nomeação do eixo x de acordo com o termo da amplitude versus a fase.
     plt.xlabel(r'Erro de estimação de A$\tau$ (ADC Count x ns)', fontsize = 18)
@@ -89,13 +93,13 @@ def histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude
     plt.yticks(fontsize = 16)
 
     # A variável texto recebe uma string com as informações de interesse.
-    texto = f"Média: {round(media_erro_amplitude_versus_fase, 6)} \n Variância: {round(var_erro_amplitude_versus_fase, 6)} \n Desvio padrão: {round(desvio_padrao_erro_amplitude_versus_fase, 6)}"
+    texto = f"Média: {round(media_erro_estimacao_parametro, 6)} \n Variância: {round(var_erro_estimacao_parametro, 6)} \n Desvio padrão: {round(desvio_padrao_erro_estimacao_parametro, 6)}"
 
-    # Comando para exibir o título do gráfico.
-    #plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
+    # Impressão do título do gráfico (recomendável para a apresentação de slides).
+    # plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
 
     # Definição do histograma a partir do vetor vetor_erro_parametro.
-    plt.hist(vetor_erro_amplitude_versus_fase, bins = 100, range = [-10000, 10000], edgecolor = 'black', linewidth = 1.2)
+    plt.hist(vetor_erro_estimacao_parametro, bins = 100, range = [-800, 800], edgecolor = 'black', linewidth = 1.2)
     
     # Posicionamento do texto no gráfico.
     plt.text(0.99, 0.98, texto, horizontalalignment = 'right',
@@ -112,21 +116,84 @@ def histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_amplitude
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
+### ---------- 3) FUNÇÃO PARA A CONSTRUÇÃO DO HISTOGRAMA DO TIPO B DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------- ###
+
+# Definição de função para o plot dos histogramas do tipo B do erro de estimação da amplitude versus fase para diferentes janelamentos para uma dada ocupação pelo método BLUE1.
+def histograma_B_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametro, lista_erro_estimacao_parametro_J7, media_erro_estimacao_parametro_J7, var_erro_estimacao_parametro_J7, desvio_padrao_erro_estimacao_parametro_J7, lista_erro_estimacao_parametro_J15, media_erro_estimacao_parametro_J15, var_erro_estimacao_parametro_J15, desvio_padrao_erro_estimacao_parametro_J15, lista_erro_estimacao_parametro_J19, media_erro_estimacao_parametro_J19, var_erro_estimacao_parametro_J19, desvio_padrao_erro_estimacao_parametro_J19):
+    
+    # A lista do erro de estimação do parâmetro para o janelamento 7 é convertida para o tipo numpy array.
+    vetor_erro_estimacao_parametro_J7 = np.array(lista_erro_estimacao_parametro_J7)
+    
+    # A lista do erro de estimação do parâmetro para o janelamento 15 é convertida para o tipo numpy array.
+    vetor_erro_estimacao_parametro_J15 = np.array(lista_erro_estimacao_parametro_J15)
+    
+    # A lista do erro de estimação do parâmetro para o janelamento 19 é convertida para o tipo numpy array.
+    vetor_erro_estimacao_parametro_J19 = np.array(lista_erro_estimacao_parametro_J19)
+
+    # Nomeação do eixo x de acordo com o termo da amplitude versus a fase.
+    plt.xlabel(r'Erro de estimação de A$\tau$ (ADC Count x ns)', fontsize = 18)
+        
+    # Definição do tamanho dos números do eixo x.    
+    plt.xticks(fontsize = 16)
+
+    # Nomeação do eixo y.
+    plt.ylabel('Número de eventos', fontsize = 18)
+    
+    # Definição do tamanho dos números do eixo y.
+    plt.yticks(fontsize = 16)
+    
+    # A variável n_bins recebe a quantidade de bins presente no histograma.
+    n_bins = 100
+    
+    # A variável x_inf recebe o valor inferior do eixo das abscissas.
+    x_inf = -10000
+    
+    # A variável x_sup recebe o valor superior do eixo das abscissas.
+    x_sup = 10000
+    
+    # A variável legenda_J7 recebe a legenda do histograma para o janelamento 7.
+    legenda_J7 = f'Janelamento 7\nMédia: {round(media_erro_estimacao_parametro_J7, 6)}\nVariância: {round(var_erro_estimacao_parametro_J7,6)}\nDesvio Padrão: {round(desvio_padrao_erro_estimacao_parametro_J7, 6)}'
+    
+    # A variável legenda_J15 recebe a legenda do histograma para o janelamento 15.
+    legenda_J15 = f'Janelamento 15\nMédia: {round(media_erro_estimacao_parametro_J15, 6)}\nVariância: {round(var_erro_estimacao_parametro_J15,6)}\nDesvio Padrão: {round(desvio_padrao_erro_estimacao_parametro_J15, 6)}'
+    
+    # A variável legenda_J19 recebe a legenda do histograma para o janelamento 19.
+    legenda_J19 = f'Janelamento 19\nMédia: {round(media_erro_estimacao_parametro_J19, 6)}\nVariância: {round(var_erro_estimacao_parametro_J19,6)}\nDesvio Padrão: {round(desvio_padrao_erro_estimacao_parametro_J19, 6)}'
+    
+    # Definição dos histogramas para diferentes janelamentos e uma dada ocupação.
+    plt.hist(vetor_erro_estimacao_parametro_J7, bins = n_bins, color='blue', range = [x_inf, x_sup], histtype = 'step', label = legenda_J7)
+    plt.hist(vetor_erro_estimacao_parametro_J15, bins = n_bins, color='green', range = [x_inf, x_sup], histtype = 'step', label = legenda_J15)
+    plt.hist(vetor_erro_estimacao_parametro_J19, bins = n_bins, color='red', range = [x_inf, x_sup], histtype = 'step', label = legenda_J19)
+    
+    # Definição do título do histograma.
+    plt.title(f"Ocupação {n_ocupacao}", fontsize = 16)
+    
+    # Definição da legenda do histograma.
+    plt.legend(fontsize = 14)
+
+    # Criação de grid.
+    plt.grid()
+
+    # Exibição do gráfico.
+    plt.show()
+
+### -------------------------------------------------------------------------------------------------------------------------------------------- ###
+
 ### -------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) ------------------------------------------------------------- ###
 
-# Definição da instrução principal (main) do código.
-def principal_histograma_BLUE1_erro_amplitude_versus_fase():
+# Definição da função principal (main) do código.
+def principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1():
     
-    # A variável parametro recebe a string "amplitude_versus_fase".
+    # A variável parametro armazena a string "amplitude_versus_fase".
     parametro = "amplitude_versus_fase"
     
     # A variável n_ocupacao armazena o valor digitado da ocupação desejada no terminal pelo usuário.
     n_ocupacao = float(input("Digite o valor da ocupação desejada: "))
 
-    # A variável valores_ocupacao é uma lista com os valores aceitáveis de ocupação de 0 até 100 com incremento de 10.
+    # A variável valores_ocupacao é uma lista com os valores aceitáveis de ocupação de 0 até 100.
     valores_ocupacao = list(range(0,101,10))
 
-    # Caso o valor digitado armazenado na variável numero_ocupacao não estiver presente na lista valores_ocupacao.
+    # Caso o valor digitado armazenado na variável n_ocupacao não estiver presente na lista valores_ocupacao.
     if n_ocupacao not in valores_ocupacao:
     
         # Exibição de uma mensagem de alerta de que a ocupação solicitada é inválida.
@@ -138,47 +205,109 @@ def principal_histograma_BLUE1_erro_amplitude_versus_fase():
     # Obs.: essa conversão possibilita que a leitura do arquivo possa ser feita corretamente.
     n_ocupacao = int(n_ocupacao)
     
-    # A variável n_janelamento armazena a quantidade de janelamento especificada no terminal pelo usuário.
-    n_janelamento = int(input("Digite a quantidade de janelamento: "))
-
-    # A variável valores_janelamento é uma lista com os valores aceitáveis do janelamento de 7 até 19 com incremento de 2.
-    valores_janelamento = list(range(7,20,2))
-
-    # Caso o valor digitado armazenado na variável n_janelamento não estiver presente na lista valores_janelamento.
-    if n_janelamento not in valores_janelamento:
+    # Impressão de mensagem no terminal.
+    print("Opções de histogramas:\nA: histograma para um dado janelamento e ocupação.\nB: histogramas para os janelamentos 7, 15 e 19 para a ocupação desejada.")
     
-        # Exibição de uma mensagem de alerta de que a quantidade de janelamento solicitada é inválida.
-        print("Quantidade de janelamento inválida! Opções de janelamento: 7, 9, 11, 13, 15, 17, 19.")
+    # A variável tipo_histograma armazena a string digitada pelo usuário.
+    tipo_histograma = str(input("Digite a opção do histograma desejada: "))
+    
+    # A variável valores_histogramas é uma lista com os valores aceitáveis para a variável tipo_histograma.
+    valores_histogramas = ["A", "B"]
+    
+    # Caso o valor digitado armazenado na variável tipo_histograma não estiver presente na lista valores_histogramas.
+    if tipo_histograma not in valores_histogramas:
+    
+        # Exibição de uma mensagem de alerta de que a opção do tipo de histograma é inválida.
+        print("A opção do tipo de histograma digitada é inválida!")
         print("---------------------------------------------------------------------------------------------------------------------------------------")
         # A execução do programa é interrompida.
         exit(1)
-        
+    
     # Chamada ordenada das funções.
     
-    Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao)
+    Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao) 
     
     Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
     
     vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
+    
+    # Caso a variável tipo_histograma seja "A".
+    if tipo_histograma == "A":
+    
+        # A variável n_janelamento armazena a quantidade de janelamento especificada no terminal pelo usuário.
+        n_janelamento = int(input("Digite a quantidade de janelamento: "))
+
+        # A variável valores_janelamento é uma lista com os valores aceitáveis do janelamento de 7 até 19 com incremento de dois.
+        valores_janelamento = list(range(7,20,2))
+
+        # Caso o valor digitado armazenado na variável n_janelamento não estiver presente na lista valores_janelamento.
+        if n_janelamento not in valores_janelamento:
+    
+            # Exibição de uma mensagem de alerta de que a quantidade de janelamento solicitada é inválida.
+            print("Quantidade de janelamento inválida! Opções de janelamento: 7, 9, 11, 13, 15, 17, 19.")
+            print("---------------------------------------------------------------------------------------------------------------------------------------")
+            # A execução do programa é interrompida.
+            exit(1)
         
-    Matriz_Pulsos_Sinais, vetor_amplitude_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
+        Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
         
-    Matriz_Pulsos_Sinais, vetor_fase_referencia = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
-              
-    Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_treino, vetor_amplitude_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_amplitude_referencia)
+        Matriz_Pulsos_Sinais_Janelado, vetor_fase_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento)
+
+        # Chamada ordenada das funções.
+        
+        Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_amplitude_referencia_treino_janelado, vetor_amplitude_referencia_teste_janelado = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado)
     
-    Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_fase_referencia_treino, vetor_fase_referencia_teste = dados_treino_teste_histograma(Matriz_Pulsos_Sinais, vetor_fase_referencia)
+        Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_fase_referencia_treino_janelado, vetor_fase_referencia_teste_janelado = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado, vetor_fase_referencia_janelado)
     
-    lista_erro_estimacao_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, n_janelamento)
+        lista_erro_estimacao_amplitude_versus_fase = metodo_BLUE1_amplitude_versus_fase(n_janelamento, Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_amplitude_referencia_teste_janelado, vetor_fase_referencia_teste_janelado)
+        
+        media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase = dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase)
     
-    media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase = dados_estatisticos_BLUE1_erro_amplitude_versus_fase(lista_erro_estimacao_amplitude_versus_fase)
+        histograma_A_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametro, lista_erro_estimacao_amplitude_versus_fase, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase)
     
-    histograma_BLUE1_erro_amplitude_versus_fase(n_ocupacao, lista_erro_estimacao_amplitude_versus_fase, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase)
+    # Caso a variável tipo_histograma seja "B".
+    else:
+        
+        # A variável n_janelamento_7 recebe a quantidade do janelamento 7.
+        n_janelamento_J7 = 7
+        # A variável n_janelamento_15 recebe a quantidade do janelamento 15.
+        n_janelamento_J15 = 15
+        # A variável n_janelamento_19 recebe a quantidade do janelamento 19.
+        n_janelamento_J19 = 19
+        
+        Matriz_Pulsos_Sinais_Janelado_J7, vetor_amplitude_referencia_janelado_J7 = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_J7)
+        Matriz_Pulsos_Sinais_Janelado_J15, vetor_amplitude_referencia_janelado_J15 = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_J15)
+        Matriz_Pulsos_Sinais_Janelado_J19, vetor_amplitude_referencia_janelado_J19 = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_J19)
+        
+        Matriz_Pulsos_Sinais_Janelado_J7, vetor_fase_referencia_janelado_J7 = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento_J7)   
+        Matriz_Pulsos_Sinais_Janelado_J15, vetor_fase_referencia_janelado_J15 = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento_J15)
+        Matriz_Pulsos_Sinais_Janelado_J19, vetor_fase_referencia_janelado_J19 = amostras_janelamento(vetor_amostras_pulsos, vetor_fase_referencia, n_janelamento_J19)
+        
+        # Chamada ordenada das funções.
     
-# Chamada da função principal (main) do código.
-principal_histograma_BLUE1_erro_amplitude_versus_fase()
+        Matriz_Pulsos_Sinais_Treino_Janelado_J7, Matriz_Pulsos_Sinais_Teste_Janelado_J7, vetor_amplitude_referencia_treino_janelado_J7, vetor_amplitude_referencia_teste_janelado_J7 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J7, vetor_amplitude_referencia_janelado_J7)
+        Matriz_Pulsos_Sinais_Treino_Janelado_J15, Matriz_Pulsos_Sinais_Teste_Janelado_J15, vetor_amplitude_referencia_treino_janelado_J15, vetor_amplitude_referencia_teste_janelado_J15 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J15, vetor_amplitude_referencia_janelado_J15)
+        Matriz_Pulsos_Sinais_Treino_Janelado_J19, Matriz_Pulsos_Sinais_Teste_Janelado_J19, vetor_amplitude_referencia_treino_janelado_J19, vetor_amplitude_referencia_teste_janelado_J19 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J19, vetor_amplitude_referencia_janelado_J19)
+        
+        Matriz_Pulsos_Sinais_Treino_Janelado_J7, Matriz_Pulsos_Sinais_Teste_Janelado_J7, vetor_fase_referencia_treino_janelado_J7, vetor_fase_referencia_teste_janelado_J7 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J7, vetor_fase_referencia_janelado_J7)
+        Matriz_Pulsos_Sinais_Treino_Janelado_J15, Matriz_Pulsos_Sinais_Teste_Janelado_J15, vetor_fase_referencia_treino_janelado_J15, vetor_fase_referencia_teste_janelado_J15 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J15, vetor_fase_referencia_janelado_J15)
+        Matriz_Pulsos_Sinais_Treino_Janelado_J19, Matriz_Pulsos_Sinais_Teste_Janelado_J19, vetor_fase_referencia_treino_janelado_J19, vetor_fase_referencia_teste_janelado_J19 = dados_treino_teste_histograma(Matriz_Pulsos_Sinais_Janelado_J19, vetor_fase_referencia_janelado_J19)
+        
+        
+        lista_erro_estimacao_amplitude_versus_fase_J7 = metodo_BLUE1_amplitude_versus_fase(n_janelamento_J7, Matriz_Pulsos_Sinais_Treino_Janelado_J7, Matriz_Pulsos_Sinais_Teste_Janelado_J7, vetor_amplitude_referencia_teste_janelado_J7, vetor_fase_referencia_teste_janelado_J7)
+        media_erro_estimacao_amplitude_versus_fase_J7, var_erro_estimacao_amplitude_versus_fase_J7, desvio_padrao_erro_estimacao_amplitude_versus_fase_J7 = dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase_J7)
+    
+        lista_erro_estimacao_amplitude_versus_fase_J15 = metodo_BLUE1_amplitude_versus_fase(n_janelamento_J15, Matriz_Pulsos_Sinais_Treino_Janelado_J15, Matriz_Pulsos_Sinais_Teste_Janelado_J15, vetor_amplitude_referencia_teste_janelado_J15, vetor_fase_referencia_teste_janelado_J15)
+        media_erro_estimacao_amplitude_versus_fase_J15, var_erro_estimacao_amplitude_versus_fase_J15, desvio_padrao_erro_estimacao_amplitude_versus_fase_J15 = dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase_J15)
+    
+        lista_erro_estimacao_amplitude_versus_fase_J19 = metodo_BLUE1_amplitude_versus_fase(n_janelamento_J19, Matriz_Pulsos_Sinais_Treino_Janelado_J19, Matriz_Pulsos_Sinais_Teste_Janelado_J19, vetor_amplitude_referencia_teste_janelado_J19, vetor_fase_referencia_teste_janelado_J19)
+        media_erro_estimacao_amplitude_versus_fase_J19, var_erro_estimacao_amplitude_versus_fase_J19, desvio_padrao_erro_estimacao_amplitude_versus_fase_J19 = dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_estimacao_amplitude_versus_fase_J19)
+    
+        histograma_B_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametro, lista_erro_estimacao_amplitude_versus_fase_J7, media_erro_estimacao_amplitude_versus_fase_J7, var_erro_estimacao_amplitude_versus_fase_J7, desvio_padrao_erro_estimacao_amplitude_versus_fase_J7, lista_erro_estimacao_amplitude_versus_fase_J15, media_erro_estimacao_amplitude_versus_fase_J15, var_erro_estimacao_amplitude_versus_fase_J15, desvio_padrao_erro_estimacao_amplitude_versus_fase_J15, lista_erro_estimacao_amplitude_versus_fase_J19, media_erro_estimacao_amplitude_versus_fase_J19, var_erro_estimacao_amplitude_versus_fase_J19, desvio_padrao_erro_estimacao_amplitude_versus_fase_J19)
+    
+# Chamada da instrução principal do código.
+principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1()
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 # Impressão de uma linha que representa o fim do programa.
 print("\n---------------------------------------------------------------------------------------------------------------------------------------\n")
-

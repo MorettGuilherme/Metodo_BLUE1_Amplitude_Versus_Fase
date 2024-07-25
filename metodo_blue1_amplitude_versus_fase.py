@@ -1,8 +1,8 @@
-# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
+# EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 24 de julho de 2024.
 
-# Objetivo do código: Aplicação do método Best Linear Unbiased Estimator (BLUE 1) para estimar o termo da amplitude versus a fase.
+# Objetivo do código: Aplicação do método Best Linear Unbiased Estimator (BLUE1) para estimar o termo da amplitude versus fase.
 
 """
 Organização do código:
@@ -21,9 +21,9 @@ Saída: vetor pulso de referência para cada instante de tempo de acordo com o j
 Entrada: número de janelamento.
 Saída: vetor da derivada temporal do pulso de referência para cada instante de tempo de acordo com o janelamento.
 
-3) Função para o método BLUE 1 para a estimação da amplitude versus a fase.
+3) Função para o método BLUE1 para a estimação da amplitude versus fase.
 Entrada: matriz com os pulsos de sinais da etapa de treino, matriz com os pulsos de sinais da etapa de teste, vetor com a amplitude de referência, vetor com a fase de referência e o número de janelamento.
-Saída: lista com o erro de estimação pelo método BLUE 1 para o termo da amplitude versus a fase.
+Saída: lista com o erro de estimação pelo método BLUE1 para o termo da amplitude versus fase.
 """
 
 # Importação das bibliotecas.
@@ -179,16 +179,16 @@ def derivada_pulso_referencia(n_janelamento):
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###   
 
-### ----------------------------------------------- 3) FUNÇÃO PARA O MÉTODO BLUE 1 ------------------------------------------------------------- ###
+### ---------------------------------- 3) FUNÇÃO PARA O MÉTODO BLUE 1 PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE -------------------------------- ###
 
-# Definição da função para o método BLUE 1 para a estimação da amplitude versus a fase.
-def metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulsos_Sinais_Teste, vetor_amplitude_referencia_teste, vetor_fase_referencia_teste, n_janelamento):
+# Definição da função para o método BLUE 1 para a estimação da amplitude versus fase.
+def metodo_BLUE1_amplitude_versus_fase(n_janelamento, Matriz_Pulsos_Sinais_Treino_Janelado, Matriz_Pulsos_Sinais_Teste_Janelado, vetor_amplitude_referencia_teste_janelado, vetor_fase_referencia_teste_janelado):
 
     # Criação da lista vazia para armazenar os erros calculados para a amplitude versus a fase. 
     lista_erro_amplitude_versus_fase = []
     
     # A variável Matriz_Covariancia recebe o valor de retorno da função matriz_covariancia.
-    Matriz_Covariancia = matriz_covariancia(Matriz_Pulsos_Sinais_Treino)
+    Matriz_Covariancia = matriz_covariancia(Matriz_Pulsos_Sinais_Treino_Janelado)
     
     # A variável vetor_h recebe o retorno da função pulso_referencia.
     vetor_h = pulso_referencia(n_janelamento)
@@ -229,13 +229,13 @@ def metodo_BLUE1_amplitude_versus_fase(Matriz_Pulsos_Sinais_Treino, Matriz_Pulso
         print("A matriz da parte do vetor de pesos do método BLUE 1 não é invertível.")
     
     # Para o índice de zero até o número de linhas da matriz Matriz_Pulsos_Sinais_Teste.
-    for indice_linha in range(len(Matriz_Pulsos_Sinais_Teste)):
+    for indice_linha in range(len(Matriz_Pulsos_Sinais_Teste_Janelado)):
         
-        # O vetor vetor_pulsos_sinais corresponde a linha de índice indice_linha da matriz Matriz_Pulsos_Sinais_Teste.    
-        vetor_pulsos_sinais_teste = Matriz_Pulsos_Sinais_Teste[indice_linha]
+        # O vetor vetor_pulsos_sinais corresponde a linha de índice indice_linha da matriz Matriz_Pulsos_Sinais_Teste_Janelado.    
+        vetor_pulsos_sinais_teste = Matriz_Pulsos_Sinais_Teste_Janelado[indice_linha]
     
-        # A amplitude de referência é o elemento de índice indice_linha do vetor vetor_amplitude_referencia_teste.
-        valor_amplitude_versus_fase_referencia_teste = vetor_amplitude_referencia_teste[indice_linha]*vetor_fase_referencia_teste[indice_linha]
+        # A amplitude de referência é o elemento de índice indice_linha do vetor vetor_amplitude_referencia_teste_janelado.
+        valor_amplitude_versus_fase_referencia_teste = vetor_amplitude_referencia_teste_janelado[indice_linha]*vetor_fase_referencia_teste_janelado[indice_linha]
         
         # Cálculo do vetor de pesos pelo método BLUE 1 para a estimação da amplitude versus a fase.
         vetor_pesos_blue1 = np.dot(np.dot(Inversa_parte_vetor_blue1, Transposta_U), Inversa_Matriz_Covariancia)
