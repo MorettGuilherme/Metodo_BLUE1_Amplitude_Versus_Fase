@@ -91,6 +91,15 @@ def histograma_A_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametr
     
     # Definição do tamanho dos números do eixo y.
     plt.yticks(fontsize = 16)
+    
+    # A variável n_bins recebe a quantidade de bins presente no histograma.
+    n_bins = 100
+    
+    # A variável x_inf recebe o valor inferior do eixo das abscissas.
+    x_inf = -10000
+    
+    # A variável x_sup recebe o valor superior do eixo das abscissas.
+    x_sup = 10000
 
     # A variável texto recebe uma string com as informações de interesse.
     texto = f"Média: {round(media_erro_estimacao_parametro, 6)} \n Variância: {round(var_erro_estimacao_parametro, 6)} \n Desvio padrão: {round(desvio_padrao_erro_estimacao_parametro, 6)}"
@@ -99,7 +108,7 @@ def histograma_A_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametr
     # plt.title(f"Ocupação {n_ocupacao}", fontsize = 18)
 
     # Definição do histograma a partir do vetor vetor_erro_parametro.
-    plt.hist(vetor_erro_estimacao_parametro, bins = 100, range = [-800, 800], edgecolor = 'black', linewidth = 1.2)
+    plt.hist(vetor_erro_estimacao_parametro, bins = n_bins, range = [x_inf, x_sup], edgecolor = 'black', linewidth = 1.2)
     
     # Posicionamento do texto no gráfico.
     plt.text(0.99, 0.98, texto, horizontalalignment = 'right',
@@ -223,14 +232,6 @@ def principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1():
         # A execução do programa é interrompida.
         exit(1)
     
-    # Chamada ordenada das funções.
-    
-    Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao) 
-    
-    Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
-    
-    vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
-    
     # Caso a variável tipo_histograma seja "A".
     if tipo_histograma == "A":
     
@@ -248,6 +249,14 @@ def principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1():
             print("---------------------------------------------------------------------------------------------------------------------------------------")
             # A execução do programa é interrompida.
             exit(1)
+            
+        # Chamada ordenada das funções.
+    
+        Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao) 
+    
+        Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
+    
+        vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
         Matriz_Pulsos_Sinais_Janelado, vetor_amplitude_referencia_janelado = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento)
         
@@ -266,7 +275,7 @@ def principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1():
         histograma_A_erro_estimacao_amplitude_versus_fase_BLUE1(n_ocupacao, parametro, lista_erro_estimacao_amplitude_versus_fase, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase)
     
     # Caso a variável tipo_histograma seja "B".
-    else:
+    elif tipo_histograma == "B":
         
         # A variável n_janelamento_7 recebe a quantidade do janelamento 7.
         n_janelamento_J7 = 7
@@ -274,6 +283,14 @@ def principal_histograma_erro_estimacao_amplitude_versus_fase_BLUE1():
         n_janelamento_J15 = 15
         # A variável n_janelamento_19 recebe a quantidade do janelamento 19.
         n_janelamento_J19 = 19
+        
+        # Chamada ordenada das funções.
+    
+        Matriz_Dados_OC = leitura_dados_ocupacao(n_ocupacao) 
+    
+        Matriz_Dados_OC_Sem_Pedestal = retirada_pedestal(Matriz_Dados_OC)
+    
+        vetor_amostras_pulsos, vetor_amplitude_referencia, vetor_fase_referencia = amostras_pulsos_e_referencia(Matriz_Dados_OC_Sem_Pedestal)
         
         Matriz_Pulsos_Sinais_Janelado_J7, vetor_amplitude_referencia_janelado_J7 = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_J7)
         Matriz_Pulsos_Sinais_Janelado_J15, vetor_amplitude_referencia_janelado_J15 = amostras_janelamento(vetor_amostras_pulsos, vetor_amplitude_referencia, n_janelamento_J15)
