@@ -1,8 +1,8 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 24 de julho de 2024.
+# Data: 28 de julho de 2024.
 
-# Objetivo do código: geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação do termo da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
+# Objetivo do código: geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação do termo da amplitude versus fase pelo método BLUE1.
 
 """ 
 Organização do Código:
@@ -12,11 +12,11 @@ Método BLUE1 formatado para o cálculo do termo da amplitude versus fase: metod
 
 Funções presentes:
 
-1) Função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
+1) Função para o cálculo dos dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE1.
 Entrada: lista com o erro de estimação para a amplitude versus fase.
 Saída: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus fase.
 
-2) Instrução para salvar os dados estatísticos do erro de estimação da amplitude versus fase para determinada ocupação em um arquivo de saída.
+2) Instrução para salvar os dados estatísticos do erro de estimação da amplitude versus fase para determinada ocupação em um arquivo de saída pelo método BLUE1.
 Entrada: a média, a variância e o desvio padrão do erro de estimação para a amplitude versus fase.
 Saída: nada.
 
@@ -43,7 +43,7 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
+titulo_programa = colored("Geração de arquivos de saída baseados nos dados estatísticos dos histogramas do erro de estimação da amplitude versus fase pelo método BLUE1:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
@@ -70,9 +70,9 @@ def dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(lista_erro_est
     
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### --- 2) FUNÇÃO PARA A IMPRESSÃO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE EM UM ARQUIVO DE SAÍDA PELO MÉTODO BLUE1 --- ###
+### --- 2) INSTRUÇÃO PARA A IMPRESSÃO DOS DADOS ESTATÍSTICOS DO ERRO DE ESTIMAÇÃO DA AMPLITUDE VERSUS FASE EM UM ARQUIVO DE SAÍDA PELO MÉTODO BLUE1 --- ###
 
-# Definição da função para a impressão em um arquivo de saída, os dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE1.
+# Definição da instrução para a impressão em um arquivo de saída, os dados estatísticos do erro de estimação da amplitude versus fase pelo método BLUE1.
 def arquivo_saida_dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, n_janelamento, media_erro_estimacao_amplitude_versus_fase, var_erro_estimacao_amplitude_versus_fase, desvio_padrao_erro_estimacao_amplitude_versus_fase):
 
     # Definição do título presente no arquivo de saída.
@@ -119,9 +119,9 @@ def arquivo_saida_dados_estatisticos_erro_estimacao_amplitude_versus_fase_BLUE1(
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ---------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------------------- ###
+### ---------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------------------- ###
 
-# Definição da função principal (main) do código.
+# Definição da instrução principal (main) do código.
 def principal_arquivo_saida_dados_estatisticos_amplitude_versus_fase_BLUE1():
     
     # A variável ocupacao_inicial armazena o valor inicial da ocupação que é 0.
@@ -173,7 +173,7 @@ def principal_arquivo_saida_dados_estatisticos_amplitude_versus_fase_BLUE1():
             
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-# Chamada da função principal do código.
+# Chamada da instrução principal do código.
 principal_arquivo_saida_dados_estatisticos_amplitude_versus_fase_BLUE1()
 
 # Impressão de uma linha que representa o fim do programa.

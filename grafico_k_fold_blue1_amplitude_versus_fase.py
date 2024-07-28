@@ -1,8 +1,8 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 24 de julho de 2024.
+# Data: 28 de julho de 2024.
 
-# Objetivo do código: construção do gráfico da validação cruzada K-Fold para a estimação do termo da amplitude versus fase.
+# Objetivo do código: construção do gráfico da validação cruzada K-Fold para a estimação do termo da amplitude versus fase pelo método BLUE1.
 
 """ 
 Organização do código:
@@ -40,14 +40,14 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Plote do gráfico da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE1) para a estimação da amplitude versus fase:\n", attrs=["bold"])
+titulo_programa = colored("Plote do gráfico da validação cruzada K-Fold para o método BLUE1 para a estimação da amplitude versus fase:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
 
 ### -------- 1) FUNÇÃO PARA A LEITURA DOS DADOS ESTATÍSTICOS DA VALIDAÇÃO CRUZADA K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1  ------ ###
 
-# Definição da função para a leitura dos dados estatísticos do K-Fold para a estimação da amplitude versus fase.
+# Definição da função para a leitura dos dados estatísticos do K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
 def leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, n_ocupacao, dado_estatistico):
     
     # Nome da pasta em que se encontra o arquivo de entrada dos dados estatísticos do K-Fold.
@@ -84,7 +84,7 @@ def leitura_dados_estatisticos_k_fold_amplitude_versus_fase_BLUE1(parametro, n_o
 
 ### ------- 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO A DA VALIDAÇÃO CRUZADA K-FOLD PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------- ###
 
-# Definição da função para a construção do gráfico tipo A pela validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
+# Definição da instrução para a construção do gráfico tipo A pela validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1.
 def grafico_A_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
     
     # Definição da variável indice_coluna_janelamento que armazena o índice da coluna do janelamento.
@@ -197,7 +197,7 @@ def grafico_A_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0
 
 ### ------ 2) INSTRUÇÃO PARA A CONSTRUÇÃO DO GRÁFICO DO TIPO B DA VALIDAÇÃO CRUZADA K-FOLD PARA ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 --------- ###
 
-# Definição da função para a construção do gráfico do tipo B pela validação cruzada K-Fold para estimação da amplitude versus fase pelo método BLUE1.
+# Definição da instrução para a construção do gráfico do tipo B pela validação cruzada K-Fold para estimação da amplitude versus fase pelo método BLUE1.
 def grafico_B_k_fold_amplitude_versus_fase_BLUE1(opcao, Matriz_Dados_K_Fold_OC_0, Matriz_Dados_K_Fold_OC_10, Matriz_Dados_K_Fold_OC_20, Matriz_Dados_K_Fold_OC_30, Matriz_Dados_K_Fold_OC_40, Matriz_Dados_K_Fold_OC_50, Matriz_Dados_K_Fold_OC_60, Matriz_Dados_K_Fold_OC_70, Matriz_Dados_K_Fold_OC_80, Matriz_Dados_K_Fold_OC_90, Matriz_Dados_K_Fold_OC_100):
     
     # Definição do vetor das ocupações.

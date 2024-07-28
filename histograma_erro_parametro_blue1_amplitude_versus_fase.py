@@ -1,8 +1,8 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 24 de julho de 2024.
+# Data: 28 de julho de 2024.
 
-# Objetivo do código: análise do erro de estimação do parâmetro da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1).
+# Objetivo do código: análise do erro de estimação do parâmetro da amplitude versus fase pelo método BLUE1.
 
 """
 Organização do Código:
@@ -45,7 +45,7 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Análise do erro de estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
+titulo_programa = colored("Análise do erro de estimação da amplitude versus fase pelo método BLUE1:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)

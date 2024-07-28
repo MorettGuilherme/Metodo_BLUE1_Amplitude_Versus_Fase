@@ -1,8 +1,8 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 28 de julho de 2024.
 
-# Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método Best Linear Unbiased Estimator (BLUE1) para a estimação do termo da amplitude versus fase.
+# Objetivo do código: gráfico dos dados estatíticos ao longo das ocupações de acordo com o janelamento para o método BLUE1 para a estimação do termo da amplitude versus fase.
 
 """ 
 Organização do Código:
@@ -78,9 +78,9 @@ def leitura_dados_estatisticos_janelamento_amplitude_versus_fase_BLUE1(parametro
 
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###
 
-### ----- 2) FUNÇÃO PARA O PLOTE DOS GRÁFICO DO DADO ESTATÍSTICO AO LONGO DAS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------- ###
+### ----- 2) INSTRUÇÃO PARA O PLOTE DOS GRÁFICO DO DADO ESTATÍSTICO AO LONGO DAS OCUPAÇÕES PARA UM DETERMINADO JANELAMENTO PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------- ###
 
-# Definição da função para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento para a estimação da amplitude versus a fase pelo método BLUE1.
+# Definição da instrução para o plote do gráfico do dado estatístico ao longo das ocupações para um determinado janelamento para a estimação da amplitude versus a fase pelo método BLUE1.
 def grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1(dado_estatistico, Matriz_Dados_Estatisticos_Janelamento):
     
     # Definição da variável indice_coluna_ocupações que armazena o valor do índice da coluna das ocupações.
@@ -143,9 +143,9 @@ def grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1(dado_estati
         
 ### -------------------------------------------------------------------------------------------------------------------------------------------- ###        
         
-### ---------------------------------------------------- 3) FUNÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
+### ---------------------------------------------------- 3) INSTRUÇÃO PRINCIPAL DO CÓDIGO (MAIN) -------------------------------------------------- ###
 
-# Definição da função principal (main) do código.
+# Definição da instrução principal (main) do código.
 def principal_grafico_dado_estatistico_janelamento_amplitude_versus_fase_BLUE1():
     
     # Impressão de mensagem no terminal.

@@ -1,8 +1,8 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE1) - Estimação da amplitude versus fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 24 de julho de 2024.
+# Data: 28 de julho de 2024.
 
-# Objetivo do código: implementação da validação cruzada K-Fold para o método Best Linear Unbiased Estimator (BLUE1) para a estimação do termo da amplitude versus fase.
+# Objetivo do código: implementação da validação cruzada K-Fold para o método BLUE1 para a estimação do termo da amplitude versus fase.
 
 """ 
 Organização do código:
@@ -41,7 +41,7 @@ print("\n-----------------------------------------------------------------------
 # Título do programa.
 
 # A variável titulo_programa armazena o título em negrito.
-titulo_programa = colored("Geração de arquivos de saída pela técnica de validação cruzada K-Fold para a estimação da amplitude versus fase pelo método Best Linear Unbiased Estimator (BLUE1):\n", attrs=["bold"])
+titulo_programa = colored("Geração de arquivos de saída pela técnica de validação cruzada K-Fold para a estimação da amplitude versus fase pelo método BLUE1:\n", attrs=["bold"])
 
 # Impressão do título do programa.
 print(titulo_programa)
@@ -216,7 +216,7 @@ def K_fold_amplitude_versus_fase_BLUE1(n_ocupacao, n_janelamento, Matriz_Pulsos_
 
 ### ---------- 3) INSTRUÇÃO PARA APLICAR O K-FOLD EM TODAS AS OCUPAÇÕES PARA A ESTIMAÇÃO DA AMPLITUDE VERSUS FASE PELO MÉTODO BLUE1 ------------ ###
   
-# Definição da função principal (main) do código.
+# Definição da instrução principal (main) do código.
 def principal_K_fold_BLUE1_amplitude_versus_fase():
     
     # A variável ocupacao_inicial armazena o valor inicial da ocupação que é 0.

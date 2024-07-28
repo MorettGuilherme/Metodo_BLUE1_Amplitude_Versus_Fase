@@ -1,6 +1,6 @@
 # EXPERIMENTO ATLAS - Reconstrução de sinal - Melhor Estimador Linear Não Enviesado - Best Linear Unbiased Estimator (BLUE 1) - Estimação da amplitude versus a fase.
 # Autor: Guilherme Barroso Morett.
-# Data: 16 de julho de 2024.
+# Data: 28 de julho de 2024.
 
 # Objetivo do código: realização da leitura dos dados de ruídos no formato free running.
 
@@ -142,13 +142,13 @@ def matriz_covariancia(Matriz_Dados_Ruidos):
 ### ----------------------------------- 5) FUNÇÃO PARA A CONSTRUÇÃO DA MATRIZ DE COVARIÂNCIA COMO IDENTIDADE ----------------------------------- ###
 
 # Definição da função para a matriz de covariância ser igual a identidade.
-def matriz_covariancia_identidade(Matriz_Dados_Ruidos):
+def matriz_covariancia_identidade(n_janelamento):
     
     # Número de linhas da matriz de dados de ruídos.
-    n_linhas_matriz_dados_ruidos = len(Matriz_Dados_Ruidos)
+    n_linhas_matriz_dados_ruidos = len(n_janelamento)
     
     # A matriz de covariância é igual a identidade.
-    Matriz_Covariancia_ID = np.eye(n_linhas_matriz_dados_ruidos)
+    Matriz_Covariancia_ID = np.eye(n_janelamento)
     
     # A função retorna a matriz de covariância igual a identidade.
     return Matriz_Covariancia_ID
